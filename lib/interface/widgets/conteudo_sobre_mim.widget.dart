@@ -47,170 +47,173 @@ class _ConteudoSobreMimWidgetState extends State<ConteudoSobreMimWidget> {
         color: Color(widget.tema.base100),
       ),
       padding: EdgeInsets.only(top: isSmallScreen ? 40 : 0),
-      child: SingleChildScrollView(
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Positioned(
-              child: Flex(
-                direction: isSmallScreen ? Axis.vertical : Axis.horizontal,
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: Responsive.mobile(context) ? 50 : 100),
-                  if (!isSmallScreen) const Spacer(),
-                  Stack(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(widget.tema.espacamento),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(200),
-                          color: Color(widget.tema.accent),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(200),
-                          child: Container(
-                            height: Responsive.tablet(context) ? 250 : 450,
-                            decoration: BoxDecoration(
-                              color: Color(widget.tema.primary),
-                            ),
-                            child: Image.asset(
-                              "assets/isabela.png",
-                              height: Responsive.tablet(context) ? 200 : 400,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        child: SvgWidget(
-                          nomeSvg: "sparkles",
-                          altura: Responsive.tablet(context) ? 40 : 80,
-                          largura: Responsive.tablet(context) ? 40 : 80,
-                          cor: Color(widget.tema.base200),
-                        )
-                            .animate(
-                              onPlay: (controller) => controller.repeat(reverse: true),
-                            )
-                            .moveY(
-                              begin: -3,
-                              end: 3,
-                              duration: 1.seconds,
-                              curve: Curves.easeInOut,
-                            ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: SvgWidget(
-                          nomeSvg: "sparkles",
-                          altura: Responsive.tablet(context) ? 40 : 80,
-                          largura: Responsive.tablet(context) ? 40 : 80,
-                          cor: Color(widget.tema.base200),
-                        )
-                            .animate(
-                              onPlay: (controller) => controller.repeat(reverse: true),
-                            )
-                            .moveY(
-                              begin: 3,
-                              end: -3,
-                              duration: 1.seconds,
-                              curve: Curves.easeInOut,
-                            ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(width: widget.tema.espacamento * 10, height: widget.tema.espacamento * 4),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: widget.tema.espacamento * 4),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextoWidget(
-                          texto: "Olá, eu sou a",
-                          tamanho: widget.tema.tamanhoFonteXG,
-                          cor: Colors.white,
-                        ),
-                        FittedBox(
-                          child: Row(
-                            children: [
-                              for (indice = 0; indice < texto.length; indice++)
-                                TextoWidget(
-                                  texto: texto[indice],
-                                  tamanho: widget.tema.tamanhoFonteXG * 2,
-                                  cor: Colors.white,
-                                  fontFamily: "Shrikhand",
-                                ).animate(onComplete: (controller) {
-                                  if (indice == texto.length - 1) resetarAnimacao();
-                                }).fade(
-                                  delay: Duration(
-                                    milliseconds: 100 * indice,
-                                  ),
-                                ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: widget.tema.espacamento * 2),
-                        Container(
-                          constraints: const BoxConstraints(maxWidth: 700),
-                          child: TextoWidget(
-                            maxLines: 10,
-                            tamanho: widget.tema.espacamento * 2,
-                            texto:
-                                "Desenvolvedora full-stack com experiência no desenvolvimento de aplicações completas, sempre focando em performance, escalabilidade e usabilidade. Estou disponível para projetos freelancer, entre em contato para trabalharmos juntos!",
-                            cor: Color(widget.tema.baseContent),
-                          ),
-                        ),
-                        SizedBox(height: widget.tema.espacamento * 3),
-                        Container(
-                         constraints: const BoxConstraints(maxWidth: 400),
-                          child: Divider(
-                            color: Color(widget.tema.baseContent),
-                            height: 1,
-                          ),
-                        ),
-                        SizedBox(height: widget.tema.espacamento * 2),
-                        Align(
-                          alignment: AlignmentDirectional.centerStart,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              TextoWidget(
-                                texto: "Contate-me: ",
-                                cor: Color(widget.tema.baseContent),
-                                tamanho: widget.tema.espacamento * 2,
-                              ),
-                              SizedBox(width: widget.tema.espacamento * 2),
-                              BotaoIconeWidget(
-                                tema: widget.tema,
-                                svgNome: 'email',
-                                callback: () {},
-                              ),
-                              SizedBox(width: widget.tema.espacamento * 2),
-                              BotaoIconeWidget(
-                                tema: widget.tema,
-                                svgNome: 'linkedin',
-                                callback: () {},
-                              ),
-                              SizedBox(width: widget.tema.espacamento * 2),
-                              BotaoIconeWidget(tema: widget.tema, svgNome: 'github', callback: () {}),
-                              SizedBox(width: widget.tema.espacamento * 2),
+      child: isSmallScreen ? SingleChildScrollView(child: _conteudo) : _conteudo,
+    );
+  }
 
-                            ],
-                          ),
+  Widget get _conteudo {
+    bool isSmallScreen = MediaQuery.of(context).size.width <= 1200;
+
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Positioned(
+          child: Flex(
+            direction: isSmallScreen ? Axis.vertical : Axis.horizontal,
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: Responsive.mobile(context) ? 50 : 100),
+              if (!isSmallScreen) const Spacer(),
+              Stack(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(widget.tema.espacamento),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(200),
+                      color: Color(widget.tema.accent),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(200),
+                      child: Container(
+                        height: Responsive.tablet(context) ? 250 : 450,
+                        decoration: BoxDecoration(
+                          color: Color(widget.tema.primary),
                         ),
-                        SizedBox(height: widget.tema.espacamento * 5),
-                      ],
+                        child: Image.asset(
+                          "assets/isabela.png",
+                          height: Responsive.tablet(context) ? 200 : 400,
+                        ),
+                      ),
                     ),
                   ),
-                  if (!isSmallScreen) const Spacer(),
+                  Positioned(
+                    child: SvgWidget(
+                      nomeSvg: "sparkles",
+                      altura: Responsive.tablet(context) ? 40 : 80,
+                      largura: Responsive.tablet(context) ? 40 : 80,
+                      cor: Color(widget.tema.base200),
+                    )
+                        .animate(
+                          onPlay: (controller) => controller.repeat(reverse: true),
+                        )
+                        .moveY(
+                          begin: -3,
+                          end: 3,
+                          duration: 1.seconds,
+                          curve: Curves.easeInOut,
+                        ),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: SvgWidget(
+                      nomeSvg: "sparkles",
+                      altura: Responsive.tablet(context) ? 40 : 80,
+                      largura: Responsive.tablet(context) ? 40 : 80,
+                      cor: Color(widget.tema.base200),
+                    )
+                        .animate(
+                          onPlay: (controller) => controller.repeat(reverse: true),
+                        )
+                        .moveY(
+                          begin: 3,
+                          end: -3,
+                          duration: 1.seconds,
+                          curve: Curves.easeInOut,
+                        ),
+                  ),
                 ],
               ),
-            ),
-          ],
+              SizedBox(width: widget.tema.espacamento * 10, height: widget.tema.espacamento * 4),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: widget.tema.espacamento * 4),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextoWidget(
+                      texto: "Olá, eu sou a",
+                      tamanho: widget.tema.tamanhoFonteXG,
+                      cor: Colors.white,
+                    ),
+                    FittedBox(
+                      child: Row(
+                        children: [
+                          for (indice = 0; indice < texto.length; indice++)
+                            TextoWidget(
+                              texto: texto[indice],
+                              tamanho: widget.tema.tamanhoFonteXG * 2,
+                              cor: Colors.white,
+                              fontFamily: "Shrikhand",
+                            ).animate(onComplete: (controller) {
+                              if (indice == texto.length - 1) resetarAnimacao();
+                            }).fade(
+                              delay: Duration(
+                                milliseconds: 100 * indice,
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: widget.tema.espacamento * 2),
+                    Container(
+                      constraints: const BoxConstraints(maxWidth: 700),
+                      child: TextoWidget(
+                        maxLines: 10,
+                        tamanho: widget.tema.espacamento * 2,
+                        texto:
+                            "Desenvolvedora full-stack com experiência no desenvolvimento de aplicações completas, sempre focando em performance, escalabilidade e usabilidade. Estou disponível para projetos freelancer, entre em contato para trabalharmos juntos!",
+                        cor: Color(widget.tema.baseContent),
+                      ),
+                    ),
+                    SizedBox(height: widget.tema.espacamento * 3),
+                    Container(
+                      constraints: const BoxConstraints(maxWidth: 400),
+                      child: Divider(
+                        color: Color(widget.tema.baseContent),
+                        height: 1,
+                      ),
+                    ),
+                    SizedBox(height: widget.tema.espacamento * 2),
+                    Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          TextoWidget(
+                            texto: "Contate-me: ",
+                            cor: Color(widget.tema.baseContent),
+                            tamanho: widget.tema.espacamento * 2,
+                          ),
+                          SizedBox(width: widget.tema.espacamento * 2),
+                          BotaoIconeWidget(
+                            tema: widget.tema,
+                            svgNome: 'email',
+                            callback: () {},
+                          ),
+                          SizedBox(width: widget.tema.espacamento * 2),
+                          BotaoIconeWidget(
+                            tema: widget.tema,
+                            svgNome: 'linkedin',
+                            callback: () {},
+                          ),
+                          SizedBox(width: widget.tema.espacamento * 2),
+                          BotaoIconeWidget(tema: widget.tema, svgNome: 'github', callback: () {}),
+                          SizedBox(width: widget.tema.espacamento * 2),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: widget.tema.espacamento * 5),
+                  ],
+                ),
+              ),
+              if (!isSmallScreen) const Spacer(),
+            ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }

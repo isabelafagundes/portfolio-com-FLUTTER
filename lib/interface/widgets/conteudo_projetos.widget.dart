@@ -23,37 +23,19 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
       "A Viagem de Chihiro",
       "Tecnologias: Dart e Flutter",
       "",
-      "chihiro_projeto.png",
+      "chihiro.gif",
     ),
     ItemCarousel.criar(
       "O Falcão e o Soldado Invernal",
       "Tecnologias: Dart e Flutter",
       "",
-      "tfws_projeto.png",
+      "falcao-soldado.gif",
     ),
     ItemCarousel.criar(
       "Jogo da Memória de Halloween",
       "Tecnologias: Dart e Flutter",
       "",
-      "memoria_projeto.png",
-    ),
-    ItemCarousel.criar(
-      "A Viagem de Chihiro",
-      "Tecnologias: Dart e Flutter",
-      "",
-      "chihiro_projeto.png",
-    ),
-    ItemCarousel.criar(
-      "O Falcão e o Soldado Invernal",
-      "Tecnologias: Dart e Flutter",
-      "",
-      "tfws_projeto.png",
-    ),
-    ItemCarousel.criar(
-      "Jogo da Memória de Halloween",
-      "Tecnologias: Dart e Flutter",
-      "",
-      "memoria_projeto.png",
+      "jogo-memoria.gif",
     ),
   ];
 
@@ -107,7 +89,10 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
                           Container(
                             height: 250,
                             clipBehavior: Clip.antiAlias,
-                            padding: EdgeInsets.all(widget.tema.espacamento),
+                            padding: EdgeInsets.only(
+                                top: widget.tema.espacamento,
+                                left: widget.tema.espacamento,
+                                right: widget.tema.espacamento),
                             decoration: BoxDecoration(
                               color: Color(widget.tema.base200),
                               borderRadius: BorderRadius.only(
@@ -123,7 +108,7 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
                                 ),
                                 image: DecorationImage(
                                   image: AssetImage("assets/${item.imagem}"),
-                                  fit: BoxFit.cover,
+                                  fit: BoxFit.fitWidth,
                                 ),
                               ),
                             ),
