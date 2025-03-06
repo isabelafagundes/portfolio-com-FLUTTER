@@ -20,9 +20,9 @@ class ConteudoHomeWidget extends StatelessWidget {
       width: largura,
       decoration: BoxDecoration(
         color: Color(tema.base200),
-        image: const DecorationImage(
+        image: DecorationImage(
           image: AssetImage("assets/computer.jpg"),
-          fit: BoxFit.fitHeight,
+          fit: Responsive.mobile(context) ? BoxFit.fitHeight : BoxFit.cover,
           opacity: .1,
         ),
       ),
@@ -32,7 +32,7 @@ class ConteudoHomeWidget extends StatelessWidget {
         children: [
           TituloWidget(
             tema: tema,
-            titulo:"Isabela Fagundes",
+            titulo: "Isabela Fagundes",
           ),
           Text(
             "Desenvolvedora Full-stack",
@@ -53,7 +53,7 @@ class ConteudoHomeWidget extends StatelessWidget {
                     label: "Sobre mim",
                     callback: () => Rota.navegar(context, Rota.SOBRE_MIM),
                     tema: tema,
-                    corFundo:  Color(tema.base100),
+                    corFundo: Color(tema.base100),
                     corBorda: Color(tema.accent),
                   ),
                 ),
