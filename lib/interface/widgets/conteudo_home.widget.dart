@@ -4,6 +4,7 @@ import 'package:portfolio/domain/tema.dart';
 import 'package:portfolio/interface/util/responsive.dart';
 import 'package:portfolio/interface/widgets/botao_home.widget.dart';
 import 'package:portfolio/interface/widgets/titulo.widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ConteudoHomeWidget extends StatelessWidget {
   final Tema tema;
@@ -21,7 +22,7 @@ class ConteudoHomeWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: Color(tema.base200),
         image: DecorationImage(
-          image: AssetImage("assets/computer.jpg"),
+          image: const AssetImage("assets/computer.jpg"),
           fit: Responsive.mobile(context) ? BoxFit.fitHeight : BoxFit.cover,
           opacity: .1,
         ),
@@ -60,8 +61,13 @@ class ConteudoHomeWidget extends StatelessWidget {
                 SizedBox(width: tema.espacamento * 2, height: tema.espacamento * 2),
                 Flexible(
                   child: BotaoHomeWidget(
-                    label: "Download CV",
-                    callback: () {},
+                    label: "Visualizar CV",
+                    callback: ()async  {
+                      await launchUrl(
+                      Uri.parse("https://drive.google.com/file/d/12LFRzR4uuA1VHxXo4c0rUOzG3TlYa-A4/view?usp=sharing"),
+                      mode: LaunchMode.externalApplication,
+                      );
+                    },
                     tema: tema,
                   ),
                 ),

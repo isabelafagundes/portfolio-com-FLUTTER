@@ -60,20 +60,23 @@ class ConteudoHabilidadesWidget extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: _obterQuantidadePorLinha(context),
-                          mainAxisExtent: 204,
+                          mainAxisExtent: 180,
                           crossAxisSpacing: tema.espacamento * 2,
                           mainAxisSpacing: tema.espacamento * 2,
                         ),
                         itemBuilder: (BuildContext context, int index) {
                           return Center(
-                            child: ItemHabilidadeWidget(
-                              nomeSvg: svgs[index],
-                              tema: tema,
-                              nomeTecnologia: nomes[index],
-                              descricao: descricoes[index],
-                            ).animate().fade(
-                                  delay: Duration(milliseconds: index * 50),
-                                ),
+                            child: SizedBox(
+                              height: 180,
+                              child: ItemHabilidadeWidget(
+                                nomeSvg: svgs[index],
+                                tema: tema,
+                                nomeTecnologia: nomes[index],
+                                descricao: descricoes[index],
+                              ).animate().fade(
+                                    delay: Duration(milliseconds: index * 100),
+                                  ),
+                            ),
                           );
                         },
                         itemCount: nomes.length,
