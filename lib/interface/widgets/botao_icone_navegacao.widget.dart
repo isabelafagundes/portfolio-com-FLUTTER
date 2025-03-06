@@ -48,7 +48,7 @@ class _BotaoIconeNavegacaoWidgetState extends State<BotaoIconeNavegacaoWidget> {
                   : Border.all(
                       color: !_hover
                           ? Color(widget.tema.neutral).withOpacity(.1)
-                          : Color(widget.tema.primary).withOpacity(.45),
+                          : Color(widget.tema.baseContent).withOpacity(.45),
                       width: 1,
                     ),
               borderRadius: BorderRadius.circular(50),
@@ -59,7 +59,7 @@ class _BotaoIconeNavegacaoWidgetState extends State<BotaoIconeNavegacaoWidget> {
                 SvgPicture.asset(
                   "assets/${widget.svgNome}.svg",
                   color:
-                      Color(!_hover ? widget.tema.base100 : widget.tema.primary),
+                      Color(!_hover ? widget.tema.primary : widget.tema.accent),
                   height: _obterTamanhoIcone(),
                   width: _obterTamanhoIcone(),
                 ),

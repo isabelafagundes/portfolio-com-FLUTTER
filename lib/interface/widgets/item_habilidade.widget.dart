@@ -71,7 +71,7 @@ class _ItemHabilidadeWidgetState extends State<ItemHabilidadeWidget> {
                                     nomeSvg: widget.nomeSvg,
                                     altura: 50,
                                     largura: 50,
-                                    cor: Color(widget.tema.accent),
+                                    cor: Color(widget.tema.primary),
                                   ),
                                   SizedBox(height: widget.tema.espacamento * 2),
                                   TextoWidget(
@@ -91,7 +91,7 @@ class _ItemHabilidadeWidgetState extends State<ItemHabilidadeWidget> {
                               child: TextoWidget(
                                 texto: widget.descricao,
                                 align: TextAlign.left,
-                                cor: Color(widget.tema.primary),
+                                cor:Color(widget.tema.baseContent),
                                 maxLines: 100,
                               ),
                             ),

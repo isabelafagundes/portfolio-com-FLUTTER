@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/domain/tema.dart';
 import 'package:portfolio/interface/util/responsive.dart';
@@ -7,6 +8,7 @@ import 'package:portfolio/interface/widgets/texto.widget.dart';
 
 class NavegacaoWidget extends StatefulWidget {
   final Tema tema;
+  final BuildContext context;
   final Function() callbackHome;
   final Function() callbackSobreMim;
   final Function() callbackHabilidades;
@@ -19,6 +21,7 @@ class NavegacaoWidget extends StatefulWidget {
     required this.callbackHabilidades,
     required this.callbackProjetos,
     required this.tema,
+    required this.context,
   });
 
   @override
@@ -41,12 +44,16 @@ class _NavegacaoWidgetState extends State<NavegacaoWidget> {
         decoration: BoxDecoration(
           color: Color(widget.tema.primary),
           borderRadius: BorderRadius.circular(widget.tema.borderRadiusP + 4),
+          border: Border.all(
+            color: Color(widget.tema.primary).withOpacity(.2),
+            width: 2,
+          ),
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color(widget.tema.primary).withOpacity(.7),
-              Color(widget.tema.primary).withOpacity(.4),
+              Color(widget.tema.accent).withOpacity(.7),
+              Color(widget.tema.secondary).withOpacity(.4),
               // Cor final
             ],
             stops: const [0.0, 1.0],
@@ -59,7 +66,7 @@ class _NavegacaoWidgetState extends State<NavegacaoWidget> {
             TextoWidget(
               texto: "IF.",
               fontFamily: 'Aboreto',
-              cor: Color(widget.tema.base100),
+              cor: Color(widget.tema.primary),
               tamanho: widget.tema.espacamento * 4,
             ),
             SizedBox(
@@ -72,6 +79,7 @@ class _NavegacaoWidgetState extends State<NavegacaoWidget> {
                 child: ItemNavegacaoWidget(
                   tema: widget.tema,
                   callback: widget.callbackHome,
+                  ativado: AutoRouter.of(widget.context).current.path.contains('home'),
                   menuSelecionado: menuSelecionado,
                   svgNome: 'home',
                   nomeItem: 'Início',
@@ -79,9 +87,7 @@ class _NavegacaoWidgetState extends State<NavegacaoWidget> {
               ),
             ),
             SizedBox(
-              height: isMobile
-                  ? widget.tema.espacamento
-                  : widget.tema.espacamento * 2,
+              height: isMobile ? widget.tema.espacamento : widget.tema.espacamento * 2,
               width: widget.tema.espacamento * 2,
             ),
             Flexible(
@@ -93,14 +99,13 @@ class _NavegacaoWidgetState extends State<NavegacaoWidget> {
                   callback: widget.callbackSobreMim,
                   menuSelecionado: menuSelecionado,
                   svgNome: 'user',
+                  ativado: AutoRouter.of(widget.context).current.path.contains('sobre-mim'),
                   nomeItem: 'Sobre mim',
                 ),
               ),
             ),
             SizedBox(
-              height: isMobile
-                  ? widget.tema.espacamento
-                  : widget.tema.espacamento * 2,
+              height: isMobile ? widget.tema.espacamento : widget.tema.espacamento * 2,
               width: widget.tema.espacamento * 2,
             ),
             Flexible(
@@ -111,15 +116,14 @@ class _NavegacaoWidgetState extends State<NavegacaoWidget> {
                   tema: widget.tema,
                   callback: widget.callbackHabilidades,
                   menuSelecionado: menuSelecionado,
+                  ativado: AutoRouter.of(widget.context).current.path.contains('habilidades'),
                   svgNome: 'identification',
                   nomeItem: 'Habilidades',
                 ),
               ),
             ),
             SizedBox(
-              height: isMobile
-                  ? widget.tema.espacamento
-                  : widget.tema.espacamento * 2,
+              height: isMobile ? widget.tema.espacamento : widget.tema.espacamento * 2,
               width: widget.tema.espacamento * 2,
             ),
             Flexible(
@@ -130,6 +134,7 @@ class _NavegacaoWidgetState extends State<NavegacaoWidget> {
                   tema: widget.tema,
                   callback: widget.callbackProjetos,
                   menuSelecionado: menuSelecionado,
+                  ativado: AutoRouter.of(widget.context).current.path.contains('projetos'),
                   svgNome: 'cmd',
                   nomeItem: 'Projetos',
                 ),

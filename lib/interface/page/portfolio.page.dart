@@ -33,44 +33,40 @@ class _PortfolioPageState extends State<PortfolioPage> {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                SingleChildScrollView(
-                  controller: controller,
-                  child: Column(
-                    children: [
-                      child,
-                      Container(
-                        height: 34,
-                        width: Responsive.larguraTela(context),
-                        color: Color(tema.base200).withOpacity(.9),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment:CrossAxisAlignment.center,
-                          children: [
-                             TextoWidget(
-                              texto: "Feito com  ",
-                              tamanho: tema.tamanhoFonteP+2,
-                              cor: Colors.white,
-                            ),
-                            SvgWidget(
-                              nomeSvg: "heart",
-                              altura: 10,
-                              cor: Color(tema.accent),
-                            ),
-                             TextoWidget(
-                              texto: "  por Isabela Fagundes © 2024",
-                              tamanho: tema.tamanhoFonteP+2,
-                              cor: Colors.white,
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                child,
+                Positioned(
+                    bottom: 0,
+                    child: Container(
+                      height: 28,
+                      width: Responsive.larguraTela(context),
+                      color: Color(tema.secondary),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          TextoWidget(
+                            texto: "Feito com  ",
+                            tamanho: tema.tamanhoFonteP + 2,
+                            cor: Colors.white,
+                          ),
+                          SvgWidget(
+                            nomeSvg: "heart",
+                            altura: 10,
+                            cor: Color(tema.base200),
+                          ),
+                          TextoWidget(
+                            texto: "  por Isabela Fagundes © 2024",
+                            tamanho: tema.tamanhoFonteP + 2,
+                            cor: Colors.white,
+                          ),
+                        ],
+                      ),
+                    )),
                 Positioned(
                   top: 12,
                   child: NavegacaoWidget(
                     tema: tema,
+                    context: context,
                     callbackHome: () => _navegarPara(Rota.HOME, context),
                     callbackSobreMim: () => _navegarPara(Rota.SOBRE_MIM, context),
                     callbackHabilidades: () => _navegarPara(Rota.HABILIDADES, context),

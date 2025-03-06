@@ -45,3 +45,7 @@ flutter:
         - asset: assets/Montserrat/Montserrat-Light.ttf
         - asset: assets/Montserrat/Montserrat-Medium.ttf
 
+    - family: Shrikhand
+      fonts:
+        - asset: assets/Shrikhand/Shrikhand-Regular.ttf
+

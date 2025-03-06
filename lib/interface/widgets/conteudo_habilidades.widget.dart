@@ -4,6 +4,7 @@ import 'package:portfolio/domain/tema.dart';
 import 'package:portfolio/interface/util/responsive.dart';
 import 'package:portfolio/interface/widgets/item_habilidade.widget.dart';
 import 'package:portfolio/interface/widgets/texto.widget.dart';
+import 'package:portfolio/interface/widgets/titulo.widget.dart';
 
 class ConteudoHabilidadesWidget extends StatelessWidget {
   final Tema tema;
@@ -30,63 +31,65 @@ class ConteudoHabilidadesWidget extends StatelessWidget {
     double altura = MediaQuery.of(context).size.height;
     double largura = MediaQuery.of(context).size.width;
     bool isMobile = MediaQuery.of(context).size.width <= 600;
-    return Container(
-      height: largura <= 800 ? null : altura-34,
-      width: largura,
-      color: Color(tema.base200),
-      padding: EdgeInsets.only(top: isMobile ? 40 : 0),
-      child: Column(
-        children: [
-          SizedBox(height: Responsive.mobile(context) ? 50 : 100),
-          TextoWidget(
-            texto: "Skills",
-            tamanho: tema.espacamento * 4,
-            cor: Color(tema.accent),
-            fontFamily: 'Aboreto',
-          ),
-          if (largura >= 800) const Spacer(),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: tema.espacamento * 5),
-                child: SizedBox(
-                  width: largura <= 550 ? null : 900,
-                  child: Center(
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: _obterQuantidadePorLinha(context),
-                        mainAxisExtent: 204,
-                        crossAxisSpacing: tema.espacamento * 2,
-                        mainAxisSpacing: tema.espacamento * 2,
+    return SingleChildScrollView(
+      child: Container(
+        height: largura <= 800 ? null : altura,
+        width: largura,
+        color: Color(tema.base200),
+        padding: EdgeInsets.only(top: isMobile ? 40 : 0),
+        child: Column(
+          children: [
+            SizedBox(height: Responsive.mobile(context) ? 50 : 100),
+            TituloWidget(
+              tema: tema,
+              titulo: "Habilidades",
+              tamanhoFonte: tema.espacamento * 4,
+            ),
+            if (largura >= 800) const Spacer(),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: tema.espacamento * 5),
+                  child: SizedBox(
+                    width: largura <= 550 ? null : 900,
+                    child: Center(
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: _obterQuantidadePorLinha(context),
+                          mainAxisExtent: 204,
+                          crossAxisSpacing: tema.espacamento * 2,
+                          mainAxisSpacing: tema.espacamento * 2,
+                        ),
+                        itemBuilder: (BuildContext context, int index) {
+                          return Center(
+                            child: ItemHabilidadeWidget(
+                              nomeSvg: svgs[index],
+                              tema: tema,
+                              nomeTecnologia: nomes[index],
+                              descricao: descricoes[index],
+                            ).animate().fade(
+                                  delay: Duration(milliseconds: index * 50),
+                                ),
+                          );
+                        },
+                        itemCount: nomes.length,
                       ),
-                      itemBuilder: (BuildContext context, int index) {
-                        return Center(
-                          child: ItemHabilidadeWidget(
-                            nomeSvg: svgs[index],
-                            tema: tema,
-                            nomeTecnologia: nomes[index],
-                            descricao: descricoes[index],
-                          ).animate().fade(
-                                delay: Duration(milliseconds: index * 50),
-                              ),
-                        );
-                      },
-                      itemCount: nomes.length,
                     ),
                   ),
                 ),
-              ),
-              if (largura <= 800) const SizedBox(height: 40),
-            ],
-          ),
-          if (largura >= 800)
-            const Spacer(
-              flex: 2,
+                if (largura <= 800) const SizedBox(height: 40),
+              ],
             ),
-        ],
+            if (largura >= 800)
+              const Spacer(
+                flex: 3,
+              ),
+          ],
+        ),
       ),
     );
   }
