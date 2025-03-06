@@ -5,6 +5,7 @@ import 'package:portfolio/interface/util/responsive.dart';
 import 'package:portfolio/interface/widgets/botao_icone.widget.dart';
 import 'package:portfolio/interface/widgets/svg.widget.dart';
 import 'package:portfolio/interface/widgets/texto.widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ConteudoSobreMimWidget extends StatefulWidget {
   final Tema tema;
@@ -191,16 +192,35 @@ class _ConteudoSobreMimWidgetState extends State<ConteudoSobreMimWidget> {
                           BotaoIconeWidget(
                             tema: widget.tema,
                             svgNome: 'email',
-                            callback: () {},
+                            callback: () async {
+                              await launchUrl(
+                                Uri.parse("mailto:isabelafagundesdev@gmail.com"),
+                                mode: LaunchMode.externalApplication,
+                              );
+                            },
                           ),
                           SizedBox(width: widget.tema.espacamento * 2),
                           BotaoIconeWidget(
                             tema: widget.tema,
                             svgNome: 'linkedin',
-                            callback: () {},
+                            callback: () async {
+                              await launchUrl(
+                                Uri.parse("https://www.linkedin.com/in/isabelafagundes09/"),
+                                mode: LaunchMode.externalApplication,
+                              );
+                            },
                           ),
                           SizedBox(width: widget.tema.espacamento * 2),
-                          BotaoIconeWidget(tema: widget.tema, svgNome: 'github', callback: () {}),
+                          BotaoIconeWidget(
+                            tema: widget.tema,
+                            svgNome: 'github',
+                            callback: () async {
+                              await launchUrl(
+                                Uri.parse("https://github.com/isabelafagundes"),
+                                mode: LaunchMode.externalApplication,
+                              );
+                            },
+                          ),
                           SizedBox(width: widget.tema.espacamento * 2),
                         ],
                       ),

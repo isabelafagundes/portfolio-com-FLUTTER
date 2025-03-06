@@ -64,8 +64,8 @@ class ConteudoHomeWidget extends StatelessWidget {
                     label: "Visualizar CV",
                     callback: ()async  {
                       await launchUrl(
-                      Uri.parse("https://drive.google.com/file/d/12LFRzR4uuA1VHxXo4c0rUOzG3TlYa-A4/view?usp=sharing"),
-                      mode: LaunchMode.externalApplication,
+                        Uri.parse("https://drive.google.com/file/d/12LFRzR4uuA1VHxXo4c0rUOzG3TlYa-A4/view?usp=sharing"),
+                        mode: LaunchMode.externalApplication,
                       );
                     },
                     tema: tema,

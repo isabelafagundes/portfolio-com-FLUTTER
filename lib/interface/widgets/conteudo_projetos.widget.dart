@@ -82,8 +82,15 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
                   ItemCarousel item = itens[index];
 
                   return Animate(
-                    effects: [
-
+                    target: itemSelecionado == item ? 1 : 0,
+                    effects: const [
+                      ScaleEffect(
+                        duration: Duration(milliseconds: 200),
+                        curve: Curves.easeInOut,
+                        alignment: Alignment.center,
+                        begin: Offset(1, 1),
+                        end: Offset(.95, .95),
+                      ),
                     ],
                     child: MouseRegion(
                       cursor: SystemMouseCursors.click,
