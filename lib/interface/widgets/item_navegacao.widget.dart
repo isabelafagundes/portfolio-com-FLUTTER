@@ -26,35 +26,38 @@ class ItemNavegacaoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
-      child: Stack(
-        clipBehavior: Clip.none,
-        alignment: Alignment.center,
-        children: [
-          Column(
-            children: [
-              BotaoIconeNavegacaoWidget(
-                tema: tema,
-                svgNome: svgNome,
-                borda: false,
-                callback: callback,
-              ),
-              TextoWidget(
-                texto: nomeItem,
-                tamanho: tema.tamanhoFonteP,
-                weight: FontWeight.w500,
-                cor: Color(tema.primary),
-              ),
-              Visibility.maintain(
-                visible: ativado,
-                child: SvgWidget(
-                  nomeSvg: "star",
-                  altura: 8,
+      child: GestureDetector(
+        onTap: callback,
+        child: Stack(
+          clipBehavior: Clip.none,
+          alignment: Alignment.center,
+          children: [
+            Column(
+              children: [
+                BotaoIconeNavegacaoWidget(
+                  tema: tema,
+                  svgNome: svgNome,
+                  borda: false,
+                  callback: callback,
+                ),
+                TextoWidget(
+                  texto: nomeItem,
+                  tamanho: tema.tamanhoFonteP,
+                  weight: FontWeight.w500,
                   cor: Color(tema.primary),
                 ),
-              ),
-            ],
-          ),
-        ],
+                Visibility.maintain(
+                  visible: ativado,
+                  child: SvgWidget(
+                    nomeSvg: "star",
+                    altura: 8,
+                    cor: Color(tema.primary),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
