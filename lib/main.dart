@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/interface/configuration/rota/rota.state.dart';
-import 'package:portfolio/interface/page/portfolio.page.dart';
 
 void main() {
   runApp(const MyApp());

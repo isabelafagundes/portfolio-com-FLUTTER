@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/interface/constant.dart';
 import 'package:portfolio/domain/tema.dart';
 import 'package:portfolio/interface/widgets/botao_icone_navegacao.widget.dart';
 import 'package:portfolio/interface/widgets/svg.widget.dart';
