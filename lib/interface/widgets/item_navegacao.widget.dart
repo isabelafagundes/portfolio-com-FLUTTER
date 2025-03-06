@@ -3,6 +3,7 @@ import 'package:portfolio/interface/constant.dart';
 import 'package:portfolio/domain/tema.dart';
 import 'package:portfolio/interface/widgets/botao_icone_navegacao.widget.dart';
 import 'package:portfolio/interface/widgets/svg.widget.dart';
+import 'package:portfolio/interface/widgets/texto.widget.dart';
 
 class ItemNavegacaoWidget extends StatelessWidget {
   final Tema tema;
@@ -30,39 +31,30 @@ class ItemNavegacaoWidget extends StatelessWidget {
         clipBehavior: Clip.none,
         alignment: Alignment.center,
         children: [
-          if (menuSelecionado == nomeItem)
-            Positioned(
-              left: null,
-              bottom: -40,
-              child: Container(
-                color: kCinza,
-                padding: EdgeInsets.symmetric(
-                  vertical: tema.espacamento / 4,
-                  horizontal: tema.espacamento,
-                ),
-                child: Text(
-                  nomeItem,
-                  style: TextStyle(
-                    color: Color(tema.accent),
-                  ),
-                ),
+          Column(
+            children: [
+              BotaoIconeNavegacaoWidget(
+                tema: tema,
+                svgNome: svgNome,
+                borda: false,
+                callback: callback,
               ),
-            ),
-          BotaoIconeNavegacaoWidget(
-            tema: tema,
-            svgNome: svgNome,
-            borda: false,
-            callback: callback,
-          ),
-          if (ativado)
-            Positioned(
-              bottom: 0,
-              child: SvgWidget(
-                nomeSvg: "star",
-                altura: 8,
+              TextoWidget(
+                texto: nomeItem,
+                tamanho: tema.tamanhoFonteP,
+                weight: FontWeight.w500,
                 cor: Color(tema.primary),
               ),
-            ),
+              Visibility.maintain(
+                visible: ativado,
+                child: SvgWidget(
+                  nomeSvg: "star",
+                  altura: 8,
+                  cor: Color(tema.primary),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

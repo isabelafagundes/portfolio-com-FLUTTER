@@ -20,6 +20,8 @@ class ConteudoProjetosWidget extends StatefulWidget {
 }
 
 class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
+  ItemCarousel? itemSelecionado;
+
   List<ItemCarousel> itens = [
     ItemCarousel.criar(
       "A Viagem de Chihiro",
@@ -79,102 +81,109 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
                 itemBuilder: (context, index) {
                   ItemCarousel item = itens[index];
 
-                  return MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () async {
-                        await launchUrl(
-                          Uri.parse(item.urlLaunch),
-                          mode: LaunchMode.externalApplication,
-                        );
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(widget.tema.espacamento * 2),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(widget.tema.neutral).withOpacity(.1),
-                              blurRadius: 4,
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          children: [
-                            Container(
-                              height: 200,
-                              clipBehavior: Clip.antiAlias,
-                              padding: EdgeInsets.only(
-                                  top: widget.tema.espacamento,
-                                  left: widget.tema.espacamento,
-                                  right: widget.tema.espacamento),
-                              decoration: BoxDecoration(
-                                color: Color(widget.tema.base200),
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(widget.tema.espacamento * 2),
-                                  topRight: Radius.circular(widget.tema.espacamento * 2),
-                                ),
+                  return Animate(
+                    effects: [
+
+                    ],
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      onEnter: (_) => setState(() => itemSelecionado = item),
+                      onExit: (_) => setState(() => itemSelecionado = null),
+                      child: GestureDetector(
+                        onTap: () async {
+                          await launchUrl(
+                            Uri.parse(item.urlLaunch),
+                            mode: LaunchMode.externalApplication,
+                          );
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(widget.tema.espacamento * 2),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color(widget.tema.neutral).withOpacity(.1),
+                                blurRadius: 4,
                               ),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(widget.tema.espacamento * 1.5),
-                                    topRight: Radius.circular(widget.tema.espacamento * 1.5),
-                                  ),
-                                  image: DecorationImage(
-                                    image: AssetImage("assets/${item.imagem}"),
-                                    fit: BoxFit.fitWidth,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: widget.tema.espacamento * 1.5,
-                                vertical: widget.tema.espacamento / 2,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Color(widget.tema.base200),
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(widget.tema.espacamento * 2),
-                                  bottomRight: Radius.circular(widget.tema.espacamento * 2),
-                                ),
-                              ),
-                              child: Row(
-                                children: [
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      TextoWidget(
-                                        texto: item.nome,
-                                        tamanho: widget.tema.tamanhoFonteG,
-                                        cor: Color(widget.tema.neutral),
-                                        weight: FontWeight.w500,
-                                      ),
-                                      TextoWidget(
-                                        texto: item.descricao,
-                                        tamanho: widget.tema.tamanhoFonteP + 2,
-                                        cor: Color(widget.tema.neutral),
-                                      ),
-                                    ],
-                                  ),
-                                  const Spacer(),
-                                  BotaoIconeWidget(
-                                      svgNome: "github",
-                                      callback: () async {
-                                        await launchUrl(
-                                          Uri.parse(item.urlGithub),
-                                          mode: LaunchMode.externalApplication,
-                                        );
-                                      },
-                                      tema: widget.tema),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ).animate().fade(
-                            delay: Duration(milliseconds: index * 100),
+                            ],
                           ),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 200,
+                                clipBehavior: Clip.antiAlias,
+                                padding: EdgeInsets.only(
+                                    top: widget.tema.espacamento,
+                                    left: widget.tema.espacamento,
+                                    right: widget.tema.espacamento),
+                                decoration: BoxDecoration(
+                                  color: Color(widget.tema.base200),
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(widget.tema.espacamento * 2),
+                                    topRight: Radius.circular(widget.tema.espacamento * 2),
+                                  ),
+                                ),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(widget.tema.espacamento * 1.5),
+                                      topRight: Radius.circular(widget.tema.espacamento * 1.5),
+                                    ),
+                                    image: DecorationImage(
+                                      image: AssetImage("assets/${item.imagem}"),
+                                      fit: BoxFit.fitWidth,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: widget.tema.espacamento * 1.5,
+                                  vertical: widget.tema.espacamento / 2,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Color(widget.tema.base200),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(widget.tema.espacamento * 2),
+                                    bottomRight: Radius.circular(widget.tema.espacamento * 2),
+                                  ),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        TextoWidget(
+                                          texto: item.nome,
+                                          tamanho: widget.tema.tamanhoFonteG,
+                                          cor: Color(widget.tema.neutral),
+                                          weight: FontWeight.w500,
+                                        ),
+                                        TextoWidget(
+                                          texto: item.descricao,
+                                          tamanho: widget.tema.tamanhoFonteP + 2,
+                                          cor: Color(widget.tema.neutral),
+                                        ),
+                                      ],
+                                    ),
+                                    const Spacer(),
+                                    BotaoIconeWidget(
+                                        svgNome: "github",
+                                        callback: () async {
+                                          await launchUrl(
+                                            Uri.parse(item.urlGithub),
+                                            mode: LaunchMode.externalApplication,
+                                          );
+                                        },
+                                        tema: widget.tema),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ).animate().fade(
+                              delay: Duration(milliseconds: index * 100),
+                            ),
+                      ),
                     ),
                   );
                 },

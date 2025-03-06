@@ -5,6 +5,7 @@ import 'package:portfolio/interface/util/responsive.dart';
 import 'package:portfolio/interface/widgets/botao_icone.widget.dart';
 import 'package:portfolio/interface/widgets/svg.widget.dart';
 import 'package:portfolio/interface/widgets/texto.widget.dart';
+import 'package:portfolio/interface/widgets/titulo.widget.dart';
 
 class ConteudoSobreMimWidget extends StatefulWidget {
   final Tema tema;

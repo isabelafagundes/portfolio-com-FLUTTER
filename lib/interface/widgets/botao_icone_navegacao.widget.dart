@@ -39,31 +39,14 @@ class _BotaoIconeNavegacaoWidgetState extends State<BotaoIconeNavegacaoWidget> {
         onTap: widget.callback,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(50),
-          child: AnimatedContainer(
-            padding: EdgeInsets.all(widget.tema.espacamento * 1.2),
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              border: !widget.borda
-                  ? null
-                  : Border.all(
-                      color: !_hover
-                          ? Color(widget.tema.neutral).withOpacity(.1)
-                          : Color(widget.tema.baseContent).withOpacity(.45),
-                      width: 1,
-                    ),
-              borderRadius: BorderRadius.circular(50),
-            ),
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.easeOut,
-            child: widget.icone ??
-                SvgPicture.asset(
-                  "assets/${widget.svgNome}.svg",
-                  color:
-                      Color(!_hover ? widget.tema.primary : widget.tema.accent),
-                  height: _obterTamanhoIcone(),
-                  width: _obterTamanhoIcone(),
-                ),
-          ),
+          child: widget.icone ??
+              SvgPicture.asset(
+                "assets/${widget.svgNome}.svg",
+                color:
+                    Color(!_hover ? widget.tema.primary : widget.tema.accent),
+                height: _obterTamanhoIcone(),
+                width: _obterTamanhoIcone(),
+              ),
         ),
       ),
     ).animate(target: _hover ? 1 : 0).shimmer(
@@ -73,11 +56,11 @@ class _BotaoIconeNavegacaoWidgetState extends State<BotaoIconeNavegacaoWidget> {
 
   double _obterTamanhoIcone() {
     if (Responsive.mobile(context)) {
-      return 22;
+      return 20;
     } else if (Responsive.tablet(context)) {
-      return 24;
+      return 22;
     } else {
-      return 26;
+      return 24;
     }
   }
 }
