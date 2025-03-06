@@ -40,14 +40,14 @@ class _ConteudoSobreMimWidgetState extends State<ConteudoSobreMimWidget> {
     double altura = MediaQuery.of(context).size.height;
     double largura = MediaQuery.of(context).size.width;
     bool isSmallScreen = MediaQuery.of(context).size.width <= 1200;
-    return SingleChildScrollView(
-      child: Container(
-        height: altura,
-        width: largura,
-        decoration: BoxDecoration(
-          color: Color(widget.tema.base100),
-        ),
-        padding: EdgeInsets.only(top: isSmallScreen ? 40 : 0),
+    return Container(
+      height: altura,
+      width: largura,
+      decoration: BoxDecoration(
+        color: Color(widget.tema.base100),
+      ),
+      padding: EdgeInsets.only(top: isSmallScreen ? 40 : 0),
+      child: SingleChildScrollView(
         child: Stack(
           alignment: Alignment.center,
           children: [
@@ -162,7 +162,15 @@ class _ConteudoSobreMimWidgetState extends State<ConteudoSobreMimWidget> {
                             cor: Color(widget.tema.baseContent),
                           ),
                         ),
-                        SizedBox(height: widget.tema.espacamento * 4),
+                        SizedBox(height: widget.tema.espacamento * 3),
+                        Container(
+                         constraints: const BoxConstraints(maxWidth: 400),
+                          child: Divider(
+                            color: Color(widget.tema.baseContent),
+                            height: 1,
+                          ),
+                        ),
+                        SizedBox(height: widget.tema.espacamento * 2),
                         Align(
                           alignment: AlignmentDirectional.centerStart,
                           child: Row(
@@ -187,6 +195,8 @@ class _ConteudoSobreMimWidgetState extends State<ConteudoSobreMimWidget> {
                               ),
                               SizedBox(width: widget.tema.espacamento * 2),
                               BotaoIconeWidget(tema: widget.tema, svgNome: 'github', callback: () {}),
+                              SizedBox(width: widget.tema.espacamento * 2),
+
                             ],
                           ),
                         ),
