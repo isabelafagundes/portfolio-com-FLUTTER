@@ -1,0 +1,89 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:portfolio/application/state/tema.state.dart';
+import 'package:portfolio/domain/tema.dart';
+import 'package:portfolio/interface/configuration/rota/rota.dart';
+import 'package:portfolio/interface/util/responsive.dart';
+import 'package:portfolio/interface/widgets/navegacao.widget.dart';
+import 'package:portfolio/interface/widgets/svg.widget.dart';
+import 'package:portfolio/interface/widgets/texto.widget.dart';
+
+@RoutePage()
+class PortfolioPage extends StatefulWidget {
+  const PortfolioPage({super.key});
+
+  @override
+  State<PortfolioPage> createState() => _PortfolioPageState();
+}
+
+class _PortfolioPageState extends State<PortfolioPage> {
+  TemaState get temaState => TemaState.instancia;
+
+  Tema get tema => temaState.temaSelecionado!;
+  ScrollController controller = ScrollController();
+
+  @override
+  Widget build(BuildContext context) {
+    return AutoRouter(
+      builder: (context, child) {
+        return Scaffold(
+          body: SizedBox(
+            height: Responsive.alturaTela(context),
+            width: Responsive.larguraTela(context),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                SingleChildScrollView(
+                  controller: controller,
+                  child: Column(
+                    children: [
+                      child,
+                      Container(
+                        height: 34,
+                        width: Responsive.larguraTela(context),
+                        color: Color(tema.base200).withOpacity(.9),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment:CrossAxisAlignment.center,
+                          children: [
+                             TextoWidget(
+                              texto: "Feito com  ",
+                              tamanho: tema.tamanhoFonteP+2,
+                              cor: Colors.white,
+                            ),
+                            SvgWidget(
+                              nomeSvg: "heart",
+                              altura: 10,
+                              cor: Color(tema.accent),
+                            ),
+                             TextoWidget(
+                              texto: "  por Isabela Fagundes © 2024",
+                              tamanho: tema.tamanhoFonteP+2,
+                              cor: Colors.white,
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Positioned(
+                  top: 12,
+                  child: NavegacaoWidget(
+                    tema: tema,
+                    callbackHome: () => _navegarPara(Rota.HOME, context),
+                    callbackSobreMim: () => _navegarPara(Rota.SOBRE_MIM, context),
+                    callbackHabilidades: () => _navegarPara(Rota.HABILIDADES, context),
+                    callbackProjetos: () => _navegarPara(Rota.PROJETOS, context),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _navegarPara(Rota rota, BuildContext context) => Rota.navegar(context, rota);
+}
