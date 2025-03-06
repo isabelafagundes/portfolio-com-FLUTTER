@@ -65,7 +65,7 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
               tamanhoFonte: widget.tema.espacamento * 4,
             ),
             Container(
-              padding: const EdgeInsets.only(top: 16, bottom: 12, left: 16, right: 16),
+              padding: const EdgeInsets.only(top: 32, bottom: 12, left: 16, right: 16),
               child: GridView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 padding: const EdgeInsets.symmetric(horizontal: 16),

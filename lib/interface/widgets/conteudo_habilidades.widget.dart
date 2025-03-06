@@ -44,7 +44,8 @@ class ConteudoHabilidadesWidget extends StatelessWidget {
               titulo: "Habilidades",
               tamanhoFonte: tema.espacamento * 4,
             ),
-            if (largura >= 800) const Spacer(),
+            if (largura >= 800) const Spacer()
+            else const SizedBox(height: 32),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
