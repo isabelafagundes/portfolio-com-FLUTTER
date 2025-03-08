@@ -87,7 +87,6 @@ class _ItemHabilidadeWidgetState extends State<ItemHabilidadeWidget> {
                             ),
                             SizedBox(width: widget.tema.espacamento),
                             Expanded(
-                              flex: 2,
                               child: TextoWidget(
                                 texto: widget.descricao,
                                 align: TextAlign.left,

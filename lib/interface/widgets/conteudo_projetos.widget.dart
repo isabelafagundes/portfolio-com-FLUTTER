@@ -24,14 +24,14 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
 
   List<ItemCarousel> itens = [
     ItemCarousel.criar(
-      "LeiturAmiga: Compartilhando livros (Front-end)",
+      "LeiturAmiga",
       "Tecnologias: Dart e Flutter",
       "https://github.com/isabelafagundes/leituramiga-FLUTTER",
       "https://github.com/isabelafagundes/leituramiga-FLUTTER",
       "leituramiga.gif",
     ),
     ItemCarousel.criar(
-      "LeiturAmiga: Compartilhando livros (Back-end)",
+      "API LeiturAmiga",
       "Tecnologias: Java e Quarkus",
       "https://github.com/isabelafagundes/leituramiga-api-QUARKUS",
       "https://github.com/isabelafagundes/leituramiga-api-QUARKUS",
@@ -86,7 +86,7 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
                 scrollDirection: Axis.vertical,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: _obterQuantidadePorLinha(largura),
-                  mainAxisExtent: 300.2,
+                  mainAxisExtent: 330.2,
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 12,
                 ),
@@ -130,7 +130,7 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
                           child: Column(
                             children: [
                               Container(
-                                height: 240,
+                                height: 270,
                                 clipBehavior: Clip.antiAlias,
                                 padding: EdgeInsets.only(
                                     top: widget.tema.espacamento,

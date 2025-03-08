@@ -34,6 +34,7 @@ class ConteudoHomeWidget extends StatelessWidget {
           TituloWidget(
             tema: tema,
             titulo: "Isabela Fagundes",
+            tamanhoFonte: 68,
           ),
           Text(
             "Desenvolvedora Full-stack",

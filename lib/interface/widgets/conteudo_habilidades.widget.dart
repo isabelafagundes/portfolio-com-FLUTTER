@@ -15,27 +15,50 @@ class ConteudoHabilidadesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> svgs = ['flutter', 'dart', 'java', 'quarkus', 'git', 'database'];
+    List<String> svgs = [
+      'flutter',
+      'dart',
+      'golang',
+      'java',
+      'quarkus',
+      'git',
+      'database',
+      'arquitetura',
+      'boas-praticas'
+    ];
 
-    List<String> nomes = ['Flutter', 'Dart', 'Java', 'Quarkus', 'Git', 'Banco de dados'];
+    List<String> nomes = [
+      'Flutter',
+      'Dart',
+      'GoLang',
+      'Java',
+      'Quarkus',
+      'Git',
+      'Banco de dados',
+      'Arquitetura de software',
+      'Boas práticas'
+    ];
 
     List<String> descricoes = [
-      'Um framework de código aberto desenvolvido pelo Google para criar aplicativos responsivos.',
-      'Uma linguagem de programação desenvolvida pelo Google, usada principalmente com o Flutter.',
-      'Uma linguagem de programação de propósito geral, orientada a objetos e amplamente utilizada para desenvolvimento de apps.',
-      'Um framework Java de código aberto, otimizado para desenvolvimento em nuvem e nativo, fornecendo alto desempenho.',
-      'Um sistema de controle de versão distribuído usado para rastrear alterações no código fonte durante o desenvolvimento de software.',
-      ' Um sistema organizado para armazenar e gerenciar conjuntos de dados.',
+      'Framework para criar apps nativos com UI fluída e responsiva.',
+      'Linguagem moderna e eficiente para apps escaláveis, usada no Flutter.',
+      'Linguagem rápida e eficiente, ideal para sistemas concorrentes e escaláveis.',
+      'Linguagem robusta e versátil para aplicações web, mobile e empresariais.',
+      'Framework Java otimizado para microsserviços e cloud-native.',
+      'Sistema de controle de versão para colaboração e gerenciamento de código.',
+      'Armazenamento estruturado de dados para aplicações diversas',
+      'Organização e design eficiente de sistemas e aplicações.',
+      'Padrões para código limpo, seguro e de fácil manutenção.',
     ];
     double altura = MediaQuery.of(context).size.height;
     double largura = MediaQuery.of(context).size.width;
     bool isMobile = MediaQuery.of(context).size.width <= 600;
-    return SingleChildScrollView(
-      child: Container(
-        height: largura <= 800 ? null : altura,
-        width: largura,
-        color: Color(tema.base200),
-        padding: EdgeInsets.only(top: isMobile ? 40 : 0),
+    return Container(
+      height: largura <= 800 ? null : altura,
+      width: largura,
+      color: Color(tema.base200),
+      padding: EdgeInsets.only(top: isMobile ? 40 : 0),
+      child: SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(height: Responsive.mobile(context) ? 50 : 100),
@@ -44,8 +67,7 @@ class ConteudoHabilidadesWidget extends StatelessWidget {
               titulo: "Habilidades",
               tamanhoFonte: tema.espacamento * 4,
             ),
-            if (largura >= 800) const Spacer()
-            else const SizedBox(height: 32),
+            const SizedBox(height: 32),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,14 +82,14 @@ class ConteudoHabilidadesWidget extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: _obterQuantidadePorLinha(context),
-                          mainAxisExtent: 180,
+                          mainAxisExtent: 160,
                           crossAxisSpacing: tema.espacamento * 2,
                           mainAxisSpacing: tema.espacamento * 2,
                         ),
                         itemBuilder: (BuildContext context, int index) {
                           return Center(
                             child: SizedBox(
-                              height: 180,
+                              height: 160,
                               child: ItemHabilidadeWidget(
                                 nomeSvg: svgs[index],
                                 tema: tema,
@@ -84,13 +106,9 @@ class ConteudoHabilidadesWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (largura <= 800) const SizedBox(height: 40),
+                const SizedBox(height: 80),
               ],
             ),
-            if (largura >= 800)
-              const Spacer(
-                flex: 3,
-              ),
           ],
         ),
       ),

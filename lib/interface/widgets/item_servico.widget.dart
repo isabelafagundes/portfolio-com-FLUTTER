@@ -43,7 +43,7 @@ class _ItemServicoWidgetState extends State<ItemServicoWidget> {
           onExit: (e) => setState(() => _selecionado = false),
           child: Container(
             decoration: BoxDecoration(
-              color: _selecionado ?Color(widget.tema.base100).withOpacity(.4) :Color(widget.tema.base100),
+              color: _selecionado ?Color(widget.tema.base200).withOpacity(.4) :Color(widget.tema.base200),
               borderRadius:
                   BorderRadius.circular(widget.tema.espacamento * 2),
             ),
@@ -51,41 +51,39 @@ class _ItemServicoWidgetState extends State<ItemServicoWidget> {
               vertical: widget.tema.espacamento * 2,
               horizontal: widget.tema.espacamento * 2,
             ),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SvgWidget(
-                        nomeSvg: widget.nomeSvg,
-                        altura: 80,
-                        largura: 80,
-                        cor: Color(widget.tema.primary),
-                      ),
-                      SizedBox(height: widget.tema.espacamento * 2),
-                      TextoWidget(
-                        texto: widget.nomeServico,
-                        cor: Color(widget.tema.primary),
-                        maxLines: 2,
-                        tamanho: widget.tema.tamanhoFonteXG,
-                        weight: FontWeight.w600,
-                        align: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: widget.tema.espacamento *2),
-                  TextoWidget(
-                    texto: widget.descricao,
-                    align: TextAlign.center,
-                    cor:Color(widget.tema.baseContent),
-                    maxLines: 100,
-                  ),
-                ],
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SvgWidget(
+                      nomeSvg: widget.nomeSvg,
+                      altura: 80,
+                      largura: 80,
+                      cor: Color(widget.tema.primary),
+                    ),
+                    SizedBox(height: widget.tema.espacamento * 2),
+                    TextoWidget(
+                      texto: widget.nomeServico,
+                      cor: Color(widget.tema.primary),
+                      maxLines: 2,
+                      tamanho: widget.tema.tamanhoFonteXG,
+                      weight: FontWeight.w600,
+                      align: TextAlign.center,
+                    ),
+                  ],
+                ),
+                SizedBox(height: widget.tema.espacamento *2),
+                TextoWidget(
+                  texto: widget.descricao,
+                  align: TextAlign.center,
+                  cor:Color(widget.tema.baseContent),
+                  maxLines: 100,
+                ),
+              ],
             ),
           ),
         ),

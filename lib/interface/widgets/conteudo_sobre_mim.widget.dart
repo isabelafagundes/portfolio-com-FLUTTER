@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:portfolio/domain/tema.dart';
 import 'package:portfolio/interface/util/responsive.dart';
 import 'package:portfolio/interface/widgets/botao_icone.widget.dart';
+import 'package:portfolio/interface/widgets/item_habilidade.widget.dart';
 import 'package:portfolio/interface/widgets/item_servico.widget.dart';
 import 'package:portfolio/interface/widgets/svg.widget.dart';
 import 'package:portfolio/interface/widgets/texto.widget.dart';
@@ -77,13 +78,13 @@ class _ConteudoSobreMimWidgetState extends State<ConteudoSobreMimWidget> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(200),
                     child: Container(
-                      height: Responsive.tablet(context) ? 250 : 450,
+                      height: Responsive.tablet(context) ? 350 : 450,
                       decoration: BoxDecoration(
                         color: Color(widget.tema.primary),
                       ),
                       child: Image.asset(
                         "assets/isabela.png",
-                        height: Responsive.tablet(context) ? 200 : 400,
+                        height: Responsive.tablet(context) ? 300 : 400,
                       ),
                     ),
                   ),
@@ -230,7 +231,7 @@ class _ConteudoSobreMimWidgetState extends State<ConteudoSobreMimWidget> {
             ),
           ],
         ),
-        SizedBox(height: widget.tema.espacamento * 4),
+        SizedBox(height: widget.tema.espacamento * 3),
         TituloWidget(
           titulo: "Serviços",
           tamanhoFonte: widget.tema.espacamento * 4,
