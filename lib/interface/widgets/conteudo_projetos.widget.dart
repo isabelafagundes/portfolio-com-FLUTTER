@@ -24,11 +24,18 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
 
   List<ItemCarousel> itens = [
     ItemCarousel.criar(
-      "A Viagem de Chihiro",
+      "LeiturAmiga: Compartilhando livros (Front-end)",
       "Tecnologias: Dart e Flutter",
-      "https://github.com/isabelafagundes/a-viagem-de-chihiro-com-FLUTTER",
-      "https://isabelafagundes.github.io/a-viagem-de-chihiro-com-FLUTTER/",
-      "chihiro.gif",
+      "https://github.com/isabelafagundes/leituramiga-FLUTTER",
+      "https://github.com/isabelafagundes/leituramiga-FLUTTER",
+      "leituramiga.gif",
+    ),
+    ItemCarousel.criar(
+      "LeiturAmiga: Compartilhando livros (Back-end)",
+      "Tecnologias: Java e Quarkus",
+      "https://github.com/isabelafagundes/leituramiga-api-QUARKUS",
+      "https://github.com/isabelafagundes/leituramiga-api-QUARKUS",
+      "computer.jpg",
     ),
     ItemCarousel.criar(
       "O Falcão e o Soldado Invernal",
@@ -43,6 +50,13 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
       "https://github.com/isabelafagundes/jogo-da-memoria-com-FLUTTER",
       "https://isabelafagundes.github.io/jogo-da-memoria-com-FLUTTER/",
       "jogo-memoria.gif",
+    ),
+    ItemCarousel.criar(
+      "A Viagem de Chihiro",
+      "Tecnologias: Dart e Flutter",
+      "https://github.com/isabelafagundes/a-viagem-de-chihiro-com-FLUTTER",
+      "https://isabelafagundes.github.io/a-viagem-de-chihiro-com-FLUTTER/",
+      "chihiro.gif",
     ),
   ];
 
@@ -72,7 +86,7 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
                 scrollDirection: Axis.vertical,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: _obterQuantidadePorLinha(largura),
-                  mainAxisExtent: 256.2,
+                  mainAxisExtent: 300.2,
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 12,
                 ),
@@ -116,7 +130,7 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
                           child: Column(
                             children: [
                               Container(
-                                height: 200,
+                                height: 240,
                                 clipBehavior: Clip.antiAlias,
                                 padding: EdgeInsets.only(
                                     top: widget.tema.espacamento,
@@ -137,7 +151,7 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
                                     ),
                                     image: DecorationImage(
                                       image: AssetImage("assets/${item.imagem}"),
-                                      fit: BoxFit.fitWidth,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
@@ -156,23 +170,26 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
                                 ),
                                 child: Row(
                                   children: [
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        TextoWidget(
-                                          texto: item.nome,
-                                          tamanho: widget.tema.tamanhoFonteG,
-                                          cor: Color(widget.tema.neutral),
-                                          weight: FontWeight.w500,
-                                        ),
-                                        TextoWidget(
-                                          texto: item.descricao,
-                                          tamanho: widget.tema.tamanhoFonteP + 2,
-                                          cor: Color(widget.tema.neutral),
-                                        ),
-                                      ],
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          TextoWidget(
+                                            texto: item.nome,
+                                            tamanho: widget.tema.tamanhoFonteG,
+                                            cor: Color(widget.tema.neutral),
+                                            weight: FontWeight.w500,
+                                            maxLines: 1,
+                                          ),
+                                          TextoWidget(
+                                            texto: item.descricao,
+                                            tamanho: widget.tema.tamanhoFonteP + 2,
+                                            cor: Color(widget.tema.neutral),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    const Spacer(),
+                                    SizedBox(width: widget.tema.espacamento * 2),
                                     BotaoIconeWidget(
                                         svgNome: "github",
                                         callback: () async {
