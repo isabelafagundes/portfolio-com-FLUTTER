@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:portfolio/domain/tema.dart';
 import 'package:portfolio/interface/util/responsive.dart';
 import 'package:portfolio/interface/widgets/botao_icone.widget.dart';
+import 'package:portfolio/interface/widgets/item_animado.widget.dart';
 import 'package:portfolio/interface/widgets/texto.widget.dart';
 import 'package:portfolio/interface/widgets/titulo.widget.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -73,43 +74,33 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
         child: Column(
           children: [
             SizedBox(height: Responsive.mobile(context) ? 50 : 100),
-            TituloWidget(
-              tema: widget.tema,
-              titulo: "Projetos",
-              tamanhoFonte: widget.tema.espacamento * 4,
+            ItemAnimadoWidget(
+              child: TituloWidget(
+                tema: widget.tema,
+                titulo: "Projetos",
+                tamanhoFonte: widget.tema.espacamento * 5,
+              ),
             ),
-            Container(
-              padding: const EdgeInsets.only(top: 32, bottom: 12, left: 16, right: 16),
-              child: GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                scrollDirection: Axis.vertical,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: _obterQuantidadePorLinha(largura),
-                  mainAxisExtent: 330.2,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
-                ),
-                itemCount: itens.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  ItemCarousel item = itens[index];
-
-                  return Animate(
-                    target: itemSelecionado == item ? 1 : 0,
-                    effects: const [
-                      ScaleEffect(
-                        duration: Duration(milliseconds: 200),
-                        curve: Curves.easeInOut,
-                        alignment: Alignment.center,
-                        begin: Offset(1, 1),
-                        end: Offset(.95, .95),
-                      ),
-                    ],
-                    child: MouseRegion(
+            ItemAnimadoWidget(
+              child: Container(
+                padding: const EdgeInsets.only(top: 32, bottom: 12, left: 16, right: 16),
+                child: GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  scrollDirection: Axis.vertical,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: _obterQuantidadePorLinha(largura),
+                    mainAxisExtent: 330.2,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                  ),
+                  itemCount: itens.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    ItemCarousel item = itens[index];
+              
+                    return MouseRegion(
                       cursor: SystemMouseCursors.click,
-                      onEnter: (_) => setState(() => itemSelecionado = item),
-                      onExit: (_) => setState(() => itemSelecionado = null),
                       child: GestureDetector(
                         onTap: () async {
                           await launchUrl(
@@ -208,9 +199,9 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
                               delay: Duration(milliseconds: index * 100),
                             ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             ),
             const SizedBox(height: 50),

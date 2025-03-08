@@ -64,13 +64,13 @@ class _NavegacaoWidgetState extends State<NavegacaoWidget> {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextoWidget(
-              texto: "IF.",
-              fontFamily: 'Aboreto',
+              texto: "if",
+              fontFamily: 'Shrikhand',
               cor: Color(widget.tema.primary),
               tamanho: widget.tema.espacamento * 4,
             ),
             SizedBox(
-              width: widget.tema.espacamento * 5,
+              width: widget.tema.espacamento * 6,
             ),
             Flexible(
               child: MouseRegion(
@@ -88,7 +88,7 @@ class _NavegacaoWidgetState extends State<NavegacaoWidget> {
             ),
             SizedBox(
               height: isMobile ? widget.tema.espacamento : widget.tema.espacamento * 2,
-              width: widget.tema.espacamento * 2,
+              width: widget.tema.espacamento * 3,
             ),
             Flexible(
               child: MouseRegion(
@@ -106,25 +106,7 @@ class _NavegacaoWidgetState extends State<NavegacaoWidget> {
             ),
             SizedBox(
               height: isMobile ? widget.tema.espacamento : widget.tema.espacamento * 2,
-              width: widget.tema.espacamento * 2,
-            ),
-            Flexible(
-              child: MouseRegion(
-                onEnter: (e) => setState(() => menuSelecionado = "Habilidades"),
-                onExit: (e) => setState(() => menuSelecionado = ""),
-                child: ItemNavegacaoWidget(
-                  tema: widget.tema,
-                  callback: widget.callbackHabilidades,
-                  menuSelecionado: menuSelecionado,
-                  ativado: AutoRouter.of(widget.context).current.path.contains('habilidades'),
-                  svgNome: 'identification',
-                  nomeItem: 'Habilidades',
-                ),
-              ),
-            ),
-            SizedBox(
-              height: isMobile ? widget.tema.espacamento : widget.tema.espacamento * 2,
-              width: widget.tema.espacamento * 2,
+              width: widget.tema.espacamento * 3,
             ),
             Flexible(
               child: MouseRegion(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/domain/tema.dart';
+import 'package:portfolio/interface/util/responsive.dart';
 import 'package:portfolio/interface/widgets/botao_icone_navegacao.widget.dart';
 import 'package:portfolio/interface/widgets/svg.widget.dart';
 import 'package:portfolio/interface/widgets/texto.widget.dart';
@@ -42,7 +43,7 @@ class ItemNavegacaoWidget extends StatelessWidget {
                 ),
                 TextoWidget(
                   texto: nomeItem,
-                  tamanho: tema.tamanhoFonteP,
+                  tamanho: Responsive.mobile(context) ? tema.tamanhoFonteP : tema.tamanhoFonteP + 2,
                   weight: FontWeight.w500,
                   cor: Color(tema.primary),
                 ),

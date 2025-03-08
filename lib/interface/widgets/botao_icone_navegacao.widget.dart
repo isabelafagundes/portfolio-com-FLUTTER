@@ -56,11 +56,11 @@ class _BotaoIconeNavegacaoWidgetState extends State<BotaoIconeNavegacaoWidget> {
 
   double _obterTamanhoIcone() {
     if (Responsive.mobile(context)) {
-      return 20;
-    } else if (Responsive.tablet(context)) {
       return 22;
-    } else {
+    } else if (Responsive.tablet(context)) {
       return 24;
+    } else {
+      return 26;
     }
   }
 }

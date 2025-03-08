@@ -48,7 +48,7 @@ class _ItemHabilidadeWidgetState extends State<ItemHabilidadeWidget> {
                       height: 184,
                       width: 300,
                       decoration: BoxDecoration(
-                        color: _selecionado ?Color(widget.tema.base100).withOpacity(.4) :Color(widget.tema.base100),
+                        color: _selecionado ?Color(widget.tema.base200).withOpacity(.4) :Color(widget.tema.base200),
                         borderRadius:
                             BorderRadius.circular(widget.tema.espacamento * 2),
                       ),
