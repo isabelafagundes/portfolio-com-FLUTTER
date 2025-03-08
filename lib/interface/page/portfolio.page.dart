@@ -4,9 +4,11 @@ import 'package:portfolio/application/state/tema.state.dart';
 import 'package:portfolio/domain/tema.dart';
 import 'package:portfolio/interface/configuration/rota/rota.dart';
 import 'package:portfolio/interface/util/responsive.dart';
+import 'package:portfolio/interface/widgets/item_navegacao.widget.dart';
 import 'package:portfolio/interface/widgets/navegacao.widget.dart';
 import 'package:portfolio/interface/widgets/svg.widget.dart';
 import 'package:portfolio/interface/widgets/texto.widget.dart';
+import 'package:portfolio/interface/widgets/texto_com_switcher.widget.dart';
 
 @RoutePage()
 class PortfolioPage extends StatefulWidget {
@@ -44,10 +46,13 @@ class _PortfolioPageState extends State<PortfolioPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          SizedBox(width: tema.espacamento),
+                          const Spacer(),
                           TextoWidget(
                             texto: "Feito com  ",
                             tamanho: tema.tamanhoFonteP + 2,
-                            cor: Colors.white,
+                            cor: Color(tema.baseContent),
+
                           ),
                           SvgWidget(
                             nomeSvg: "heart",
@@ -57,8 +62,23 @@ class _PortfolioPageState extends State<PortfolioPage> {
                           TextoWidget(
                             texto: "  por Isabela Fagundes © 2024",
                             tamanho: tema.tamanhoFonteP + 2,
-                            cor: Colors.white,
+                            cor: Color(tema.baseContent),
                           ),
+                          const Spacer(),
+                          // GestureDetector(
+                          //   onTap: () => temaState.alterarTema(
+                          //     temaState.temaSelecionado?.id == 1 ? 2 : 1,
+                          //     () => setState(
+                          //       () {},
+                          //     ),
+                          //   ),
+                          //   child: SvgWidget(
+                          //     nomeSvg: temaState.temaSelecionado?.id == 1 ? "sun" : "moon",
+                          //     altura: 20,
+                          //     cor: Color(tema.baseContent),
+                          //   ),
+                          // ),
+                          SizedBox(width: tema.espacamento),
                         ],
                       ),
                     )),

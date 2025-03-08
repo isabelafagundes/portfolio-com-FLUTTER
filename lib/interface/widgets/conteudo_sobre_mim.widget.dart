@@ -139,7 +139,7 @@ class _ConteudoSobreMimWidgetState extends State<ConteudoSobreMimWidget> {
                     TextoWidget(
                       texto: "Olá, eu sou a",
                       tamanho: widget.tema.tamanhoFonteXG,
-                      cor: Colors.white,
+                      cor: Color(widget.tema.baseContent),
                     ),
                     FittedBox(
                       child: Row(
@@ -148,7 +148,7 @@ class _ConteudoSobreMimWidgetState extends State<ConteudoSobreMimWidget> {
                             TextoWidget(
                               texto: texto[indice],
                               tamanho: widget.tema.tamanhoFonteXG * 2,
-                              cor: Colors.white,
+                              cor: Color(widget.tema.baseContent),
                               fontFamily: "Shrikhand",
                             ).animate(onComplete: (controller) {
                               if (indice == texto.length - 1) resetarAnimacao();

@@ -29,12 +29,11 @@ class _ItemAnimadoWidgetState extends State<ItemAnimadoWidget> {
         }
       },
       child: Animate(
+        target: _isVisible ? 1 : 0,
         effects: [
           FadeEffect(duration: 600.ms),
           SlideEffect(begin: const Offset(0, 0.2), duration: 600.ms, curve: Curves.easeOut),
         ],
-        delay: widget.delay ?? const Duration(milliseconds: 500),
-        autoPlay: _isVisible,
         child: widget.child,
       ),
     );

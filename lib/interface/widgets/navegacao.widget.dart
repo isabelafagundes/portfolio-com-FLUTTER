@@ -52,8 +52,8 @@ class _NavegacaoWidgetState extends State<NavegacaoWidget> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color(widget.tema.accent).withOpacity(.7),
-              Color(widget.tema.secondary).withOpacity(.4),
+              Color(widget.tema.accent).withOpacity(.4),
+              Color(widget.tema.secondary).withOpacity(.2),
               // Cor final
             ],
             stops: const [0.0, 1.0],

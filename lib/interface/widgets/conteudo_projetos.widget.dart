@@ -121,7 +121,7 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
                           child: Column(
                             children: [
                               Container(
-                                height: 270,
+                                height: 274,
                                 clipBehavior: Clip.antiAlias,
                                 padding: EdgeInsets.only(
                                     top: widget.tema.espacamento,
