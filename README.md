@@ -35,7 +35,7 @@ O portfólio consiste em várias páginas, incluindo:
 ## 🌐 Acessar Portfólio
 
 O portfólio está hospedado na Vercel e pode ser acessado através do seguinte link:  
-👉 [**Acessar Portfólio**](https://portfolio-beige-omega-18.vercel.app/#/home) 👈
+👉 [**Acessar Portfólio**](https://portfolio-com-flutter.vercel.app/#/home) 👈
 
 ---
 
