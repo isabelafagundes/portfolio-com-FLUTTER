@@ -5,8 +5,6 @@ import 'package:portfolio/interface/util/responsive.dart';
 import 'package:portfolio/interface/widgets/botao_icone.widget.dart';
 import 'package:portfolio/interface/widgets/habilidades.widget.dart';
 import 'package:portfolio/interface/widgets/item_animado.widget.dart';
-import 'package:portfolio/interface/widgets/item_habilidade.widget.dart';
-import 'package:portfolio/interface/widgets/item_servico.widget.dart';
 import 'package:portfolio/interface/widgets/servicos.widget.dart';
 import 'package:portfolio/interface/widgets/svg.widget.dart';
 import 'package:portfolio/interface/widgets/texto.widget.dart';

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:portfolio/domain/tema.dart';
 import 'package:portfolio/interface/util/responsive.dart';
 import 'package:portfolio/interface/widgets/habilidades.widget.dart';
-import 'package:portfolio/interface/widgets/item_habilidade.widget.dart';
-import 'package:portfolio/interface/widgets/titulo.widget.dart';
 
 class ConteudoHabilidadesWidget extends StatelessWidget {
   final Tema tema;
