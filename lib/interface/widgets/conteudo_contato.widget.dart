@@ -31,6 +31,7 @@ class _ConteudoContatoWidgetState extends State<ConteudoContatoWidget> {
     double altura = MediaQuery.of(context).size.height;
     double largura = MediaQuery.of(context).size.width;
     bool isMobile = MediaQuery.of(context).size.width <= 600;
+
     return Container(
       height: largura <= 800 ? null : altura,
       width: largura,
@@ -57,7 +58,8 @@ class _ConteudoContatoWidgetState extends State<ConteudoContatoWidget> {
                 children: [
                   ItemAnimadoWidget(
                     child: TextoWidget(
-                      texto: "Entre em contato comigo para tirar dúvidas, fazer sugestões ou apenas bater um papo.",
+                      texto:
+                          "Entre em contato comigo para tirar dúvidas, fazer sugestões ou apenas bater um papo.",
                       cor: Color(widget.tema.baseContent),
                       align: TextAlign.center,
                       maxLines: 20,
@@ -66,7 +68,9 @@ class _ConteudoContatoWidgetState extends State<ConteudoContatoWidget> {
                   SizedBox(height: widget.tema.espacamento * 2),
                   Flexible(
                     child: Flex(
-                      direction: Responsive.mobile(context) ? Axis.vertical : Axis.horizontal,
+                      direction: Responsive.mobile(context)
+                          ? Axis.vertical
+                          : Axis.horizontal,
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Flexible(
@@ -74,7 +78,7 @@ class _ConteudoContatoWidgetState extends State<ConteudoContatoWidget> {
                             child: InputWidget(
                               tema: widget.tema,
                               controller: _nomeController,
-                              onChanged: (_) => setState(() {}),
+                              onChanged: (_) {},
                               label: "Nome",
                             ),
                           ),
@@ -89,7 +93,7 @@ class _ConteudoContatoWidgetState extends State<ConteudoContatoWidget> {
                             child: InputWidget(
                               tema: widget.tema,
                               controller: _emailController,
-                              onChanged: (_) => setState(() {}),
+                              onChanged: (_) {},
                               label: "E-mail",
                             ),
                           ),
@@ -102,7 +106,7 @@ class _ConteudoContatoWidgetState extends State<ConteudoContatoWidget> {
                     child: InputWidget(
                       tema: widget.tema,
                       controller: _mensagemController,
-                      onChanged: (_) => setState(() {}),
+                      onChanged: (_) {},
                       label: "Mensagem",
                       alturaCampo: 150,
                       expandir: true,
@@ -139,7 +143,11 @@ class _ConteudoContatoWidgetState extends State<ConteudoContatoWidget> {
     required String message,
   }) async {
     final url = Uri.parse('https://formspree.io/f/mwplegwr');
-    if (name.isEmpty || email.isEmpty || message.isEmpty || !email.contains('@') || !email.contains('.')) {
+    if (name.isEmpty ||
+        email.isEmpty ||
+        message.isEmpty ||
+        !email.contains('@') ||
+        !email.contains('.')) {
       print('Preencha todos os campos!');
       return;
     }
@@ -147,11 +155,7 @@ class _ConteudoContatoWidgetState extends State<ConteudoContatoWidget> {
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},
-      body: json.encode({
-        'name': name,
-        'email': email,
-        'message': message,
-      }),
+      body: json.encode({'name': name, 'email': email, 'message': message}),
     );
 
     if (response.statusCode == 200) {
