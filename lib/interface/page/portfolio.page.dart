@@ -89,7 +89,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                     context: context,
                     callbackHome: () => _navegarPara(Rota.HOME, context),
                     callbackSobreMim: () => _navegarPara(Rota.SOBRE_MIM, context),
-                    callbackHabilidades: () => _navegarPara(Rota.HABILIDADES, context),
+                    callbackContato: () => _navegarPara(Rota.CONTATO, context),
                     callbackProjetos: () => _navegarPara(Rota.PROJETOS, context),
                   ),
                 ),

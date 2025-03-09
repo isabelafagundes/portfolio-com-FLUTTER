@@ -11,14 +11,14 @@ class NavegacaoWidget extends StatefulWidget {
   final BuildContext context;
   final Function() callbackHome;
   final Function() callbackSobreMim;
-  final Function() callbackHabilidades;
+  final Function() callbackContato;
   final Function() callbackProjetos;
 
   const NavegacaoWidget({
     super.key,
     required this.callbackHome,
     required this.callbackSobreMim,
-    required this.callbackHabilidades,
+    required this.callbackContato,
     required this.callbackProjetos,
     required this.tema,
     required this.context,
@@ -34,95 +34,115 @@ class _NavegacaoWidgetState extends State<NavegacaoWidget> {
   @override
   Widget build(BuildContext context) {
     bool isMobile = Responsive.larguraTela(context) <= 640;
-    return EfeitoGlassWidget(
-      radius: BorderRadius.circular(widget.tema.borderRadiusP + 4),
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          vertical: widget.tema.espacamento,
-          horizontal: widget.tema.espacamento * 2,
-        ),
-        decoration: BoxDecoration(
-          color: Color(widget.tema.primary),
-          borderRadius: BorderRadius.circular(widget.tema.borderRadiusP + 4),
-          border: Border.all(
-            color: Color(widget.tema.primary).withOpacity(.2),
-            width: 2,
+    return FittedBox(
+      child: EfeitoGlassWidget(
+        radius: BorderRadius.circular(widget.tema.borderRadiusP + 4),
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            vertical: widget.tema.espacamento,
+            horizontal: widget.tema.espacamento * 2,
           ),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color(widget.tema.accent).withOpacity(.4),
-              Color(widget.tema.secondary).withOpacity(.2),
-              // Cor final
+          decoration: BoxDecoration(
+            color: Color(widget.tema.primary),
+            borderRadius: BorderRadius.circular(widget.tema.borderRadiusP + 4),
+            border: Border.all(
+              color: Color(widget.tema.primary).withOpacity(.2),
+              width: 2,
+            ),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(widget.tema.accent).withOpacity(.4),
+                Color(widget.tema.secondary).withOpacity(.2),
+                // Cor final
+              ],
+              stops: const [0.0, 1.0],
+            ),
+          ),
+          child: Flex(
+            direction: Axis.horizontal,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextoWidget(
+                texto: "if",
+                fontFamily: 'Shrikhand',
+                cor: Color(widget.tema.primary),
+                tamanho: widget.tema.espacamento * 4,
+              ),
+              SizedBox(
+                width: Responsive.mobile(context) ? widget.tema.espacamento * 4 : widget.tema.espacamento * 6,
+              ),
+              Flexible(
+                child: MouseRegion(
+                  onEnter: (e) => setState(() => menuSelecionado = "Início"),
+                  onExit: (e) => setState(() => menuSelecionado = ""),
+                  child: ItemNavegacaoWidget(
+                    tema: widget.tema,
+                    callback: widget.callbackHome,
+                    ativado: AutoRouter.of(widget.context).current.path.contains('home'),
+                    menuSelecionado: menuSelecionado,
+                    svgNome: 'home',
+                    nomeItem: 'Início',
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: isMobile ? widget.tema.espacamento : widget.tema.espacamento * 2,
+                width: widget.tema.espacamento * 3,
+              ),
+              Flexible(
+                child: MouseRegion(
+                  onEnter: (e) => setState(() => menuSelecionado = "Sobre mim"),
+                  onExit: (e) => setState(() => menuSelecionado = ""),
+                  child: ItemNavegacaoWidget(
+                    tema: widget.tema,
+                    callback: widget.callbackSobreMim,
+                    menuSelecionado: menuSelecionado,
+                    svgNome: 'user',
+                    ativado: AutoRouter.of(widget.context).current.path.contains('sobre-mim'),
+                    nomeItem: 'Sobre mim',
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: isMobile ? widget.tema.espacamento : widget.tema.espacamento * 2,
+                width: widget.tema.espacamento * 3,
+              ),
+              Flexible(
+                child: MouseRegion(
+                  onEnter: (e) => setState(() => menuSelecionado = "Projetos"),
+                  onExit: (e) => setState(() => menuSelecionado = ""),
+                  child: ItemNavegacaoWidget(
+                    tema: widget.tema,
+                    callback: widget.callbackProjetos,
+                    menuSelecionado: menuSelecionado,
+                    ativado: AutoRouter.of(widget.context).current.path.contains('projetos'),
+                    svgNome: 'cmd',
+                    nomeItem: 'Projetos',
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: isMobile ? widget.tema.espacamento : widget.tema.espacamento * 2,
+                width: widget.tema.espacamento * 3,
+              ),
+              Flexible(
+                child: MouseRegion(
+                  onEnter: (e) => setState(() => menuSelecionado = "Contato"),
+                  onExit: (e) => setState(() => menuSelecionado = ""),
+                  child: ItemNavegacaoWidget(
+                    tema: widget.tema,
+                    callback: widget.callbackContato,
+                    menuSelecionado: menuSelecionado,
+                    ativado: AutoRouter.of(widget.context).current.path.contains('contato'),
+                    svgNome: 'email',
+                    nomeItem: 'Contato',
+                  ),
+                ),
+              ),
             ],
-            stops: const [0.0, 1.0],
           ),
-        ),
-        child: Flex(
-          direction: Axis.horizontal,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextoWidget(
-              texto: "if",
-              fontFamily: 'Shrikhand',
-              cor: Color(widget.tema.primary),
-              tamanho: widget.tema.espacamento * 4,
-            ),
-            SizedBox(
-              width: widget.tema.espacamento * 6,
-            ),
-            Flexible(
-              child: MouseRegion(
-                onEnter: (e) => setState(() => menuSelecionado = "Início"),
-                onExit: (e) => setState(() => menuSelecionado = ""),
-                child: ItemNavegacaoWidget(
-                  tema: widget.tema,
-                  callback: widget.callbackHome,
-                  ativado: AutoRouter.of(widget.context).current.path.contains('home'),
-                  menuSelecionado: menuSelecionado,
-                  svgNome: 'home',
-                  nomeItem: 'Início',
-                ),
-              ),
-            ),
-            SizedBox(
-              height: isMobile ? widget.tema.espacamento : widget.tema.espacamento * 2,
-              width: widget.tema.espacamento * 3,
-            ),
-            Flexible(
-              child: MouseRegion(
-                onEnter: (e) => setState(() => menuSelecionado = "Sobre mim"),
-                onExit: (e) => setState(() => menuSelecionado = ""),
-                child: ItemNavegacaoWidget(
-                  tema: widget.tema,
-                  callback: widget.callbackSobreMim,
-                  menuSelecionado: menuSelecionado,
-                  svgNome: 'user',
-                  ativado: AutoRouter.of(widget.context).current.path.contains('sobre-mim'),
-                  nomeItem: 'Sobre mim',
-                ),
-              ),
-            ),
-            SizedBox(
-              height: isMobile ? widget.tema.espacamento : widget.tema.espacamento * 2,
-              width: widget.tema.espacamento * 3,
-            ),
-            Flexible(
-              child: MouseRegion(
-                onEnter: (e) => setState(() => menuSelecionado = "Projetos"),
-                onExit: (e) => setState(() => menuSelecionado = ""),
-                child: ItemNavegacaoWidget(
-                  tema: widget.tema,
-                  callback: widget.callbackProjetos,
-                  menuSelecionado: menuSelecionado,
-                  ativado: AutoRouter.of(widget.context).current.path.contains('projetos'),
-                  svgNome: 'cmd',
-                  nomeItem: 'Projetos',
-                ),
-              ),
-            ),
-          ],
         ),
       ),
     );

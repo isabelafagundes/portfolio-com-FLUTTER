@@ -5,14 +5,14 @@ import 'package:portfolio/domain/tema.dart';
 import 'package:portfolio/interface/widgets/conteudo_contato.widget.dart';
 
 @RoutePage()
-class HabilidadesPage extends StatefulWidget {
-  const HabilidadesPage({super.key});
+class ContatoPage extends StatefulWidget {
+  const ContatoPage({super.key});
 
   @override
-  State<HabilidadesPage> createState() => _HabilidadesPageState();
+  State<ContatoPage> createState() => _ContatoPageState();
 }
 
-class _HabilidadesPageState extends State<HabilidadesPage> {
+class _ContatoPageState extends State<ContatoPage> {
   TemaState get temaState => TemaState.instancia;
 
   Tema get tema => temaState.temaSelecionado!;

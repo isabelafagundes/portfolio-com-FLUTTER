@@ -98,7 +98,7 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     ItemCarousel item = itens[index];
-              
+
                     return MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
@@ -182,14 +182,15 @@ class _ConteudoProjetosWidgetState extends State<ConteudoProjetosWidget> {
                                     ),
                                     SizedBox(width: widget.tema.espacamento * 2),
                                     BotaoIconeWidget(
-                                        svgNome: "github",
-                                        callback: () async {
-                                          await launchUrl(
-                                            Uri.parse(item.urlGithub),
-                                            mode: LaunchMode.externalApplication,
-                                          );
-                                        },
-                                        tema: widget.tema),
+                                      svgNome: "github",
+                                      callback: () async {
+                                        await launchUrl(
+                                          Uri.parse(item.urlGithub),
+                                          mode: LaunchMode.externalApplication,
+                                        );
+                                      },
+                                      tema: widget.tema,
+                                    ),
                                   ],
                                 ),
                               ),

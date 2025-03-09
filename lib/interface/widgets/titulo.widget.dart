@@ -31,7 +31,7 @@ class TituloWidget extends StatelessWidget {
             SvgWidget(
               nomeSvg: "sparkles",
               altura: tamanhoFonte - 12,
-              cor: Color(tema.primary),
+              cor: Color(tema.accent),
             )
                 .animate(
                   onPlay: (controller) => controller.repeat(reverse: true),
@@ -50,14 +50,14 @@ class TituloWidget extends StatelessWidget {
                 fontFamily: 'Shrikhand',
                 fontWeight: FontWeight.w400,
                 fontSize: tamanhoFonte,
-                color: Color(tema.accent),
+                color: Color(tema.primary),
               ),
             ),
             SizedBox(width: tema.espacamento),
             SvgWidget(
               nomeSvg: "sparkles",
               altura: tamanhoFonte - 12,
-              cor: Color(tema.primary),
+              cor: Color(tema.accent),
             )
                 .animate(
                   onPlay: (controller) => controller.repeat(reverse: true),
@@ -76,7 +76,7 @@ class TituloWidget extends StatelessWidget {
             .shimmer(
               duration: const Duration(milliseconds: 3000),
               curve: Curves.easeInOut,
-              color: Color(tema.primary),
+              color: Color(tema.neutral).withOpacity(0.5),
               stops: const [0.0, 0.5, 1.0],
               delay: const Duration(milliseconds: 1000),
             ),

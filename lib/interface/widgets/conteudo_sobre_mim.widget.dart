@@ -180,51 +180,53 @@ class _ConteudoSobreMimWidgetState extends State<ConteudoSobreMimWidget> {
                       ),
                     ),
                     SizedBox(height: widget.tema.espacamento * 2),
-                    Align(
-                      alignment: AlignmentDirectional.centerStart,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          TextoWidget(
-                            texto: "Contate-me: ",
-                            cor: Color(widget.tema.baseContent),
-                            tamanho: widget.tema.espacamento * 2,
-                          ),
-                          SizedBox(width: widget.tema.espacamento * 2),
-                          BotaoIconeWidget(
-                            tema: widget.tema,
-                            svgNome: 'email',
-                            callback: () async {
-                              await launchUrl(
-                                Uri.parse("mailto:isabelafagundesdev@gmail.com"),
-                                mode: LaunchMode.externalApplication,
-                              );
-                            },
-                          ),
-                          SizedBox(width: widget.tema.espacamento * 2),
-                          BotaoIconeWidget(
-                            tema: widget.tema,
-                            svgNome: 'linkedin',
-                            callback: () async {
-                              await launchUrl(
-                                Uri.parse("https://www.linkedin.com/in/isabelafagundes09/"),
-                                mode: LaunchMode.externalApplication,
-                              );
-                            },
-                          ),
-                          SizedBox(width: widget.tema.espacamento * 2),
-                          BotaoIconeWidget(
-                            tema: widget.tema,
-                            svgNome: 'github',
-                            callback: () async {
-                              await launchUrl(
-                                Uri.parse("https://github.com/isabelafagundes"),
-                                mode: LaunchMode.externalApplication,
-                              );
-                            },
-                          ),
-                          SizedBox(width: widget.tema.espacamento * 2),
-                        ],
+                    FittedBox(
+                      child: Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            TextoWidget(
+                              texto: "Contate-me: ",
+                              cor: Color(widget.tema.baseContent),
+                              tamanho: widget.tema.espacamento * 2,
+                            ),
+                            SizedBox(width: widget.tema.espacamento * 2),
+                            BotaoIconeWidget(
+                              tema: widget.tema,
+                              svgNome: 'email',
+                              callback: () async {
+                                await launchUrl(
+                                  Uri.parse("mailto:isabelafagundesdev@gmail.com"),
+                                  mode: LaunchMode.externalApplication,
+                                );
+                              },
+                            ),
+                            SizedBox(width: widget.tema.espacamento * 2),
+                            BotaoIconeWidget(
+                              tema: widget.tema,
+                              svgNome: 'linkedin',
+                              callback: () async {
+                                await launchUrl(
+                                  Uri.parse("https://www.linkedin.com/in/isabelafagundes09/"),
+                                  mode: LaunchMode.externalApplication,
+                                );
+                              },
+                            ),
+                            SizedBox(width: widget.tema.espacamento * 2),
+                            BotaoIconeWidget(
+                              tema: widget.tema,
+                              svgNome: 'github',
+                              callback: () async {
+                                await launchUrl(
+                                  Uri.parse("https://github.com/isabelafagundes"),
+                                  mode: LaunchMode.externalApplication,
+                                );
+                              },
+                            ),
+                            SizedBox(width: widget.tema.espacamento * 2),
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(height: widget.tema.espacamento * 5),

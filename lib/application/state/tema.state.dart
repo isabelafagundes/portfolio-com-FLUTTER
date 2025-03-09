@@ -67,9 +67,9 @@ mixin class TemaState {
 
   final Tema _temaEscuro = Tema.criar(
     id: 1,
-    corAccent: "733c46",
-    corPrimary: "8c5a6c",
-    corSecondary: "402837",
+    corAccent: "aa4761",
+    corPrimary: "c58997",
+    corSecondary: "733c46",
     corNeutral: "fce5fc",
     corBase100: "2e2c41",
     corInfo: "61b3ff",

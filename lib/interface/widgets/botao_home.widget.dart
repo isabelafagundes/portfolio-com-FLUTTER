@@ -67,12 +67,14 @@ class _BotaoHomeWidgetState extends State<BotaoHomeWidget> {
                 widget.tema.espacamento * 4,
               ),
             ),
-            child: Text(
-              widget.label,
-              style: TextStyle(
-                fontWeight: FontWeight.w400,
-                fontSize: widget.tema.espacamento * 2,
-                color: Color(widget.tema.baseContent),
+            child: Center(
+              child: Text(
+                widget.label,
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: widget.tema.espacamento * 2,
+                  color: Color(widget.tema.baseContent),
+                ),
               ),
             ),
           ),

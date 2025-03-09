@@ -4,7 +4,7 @@ import 'package:portfolio/interface/configuration/rota/app_router.dart';
 
 enum Rota {
   AREA_LOGADA(url: "/", pageInfo: PortfolioRoute.page),
-  HABILIDADES(url: "habilidades", pageInfo: HabilidadesRoute.page),
+  CONTATO(url: "contato", pageInfo: HabilidadesRoute.page),
   SOBRE_MIM(url: "sobre-mim", pageInfo: SobreMimRoute.page),
   PROJETOS(url: "projetos", pageInfo: ProjetosRoute.page),
   HOME(url: "home", pageInfo: HomeRoute.page);
@@ -23,7 +23,7 @@ enum Rota {
           subrotas: [
             adicionar(rota: HOME, inicial: true),
             adicionar(rota: SOBRE_MIM),
-            adicionar(rota: HABILIDADES),
+            adicionar(rota: CONTATO),
             adicionar(rota: PROJETOS),
           ],
         ),
