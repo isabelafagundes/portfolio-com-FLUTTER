@@ -96,7 +96,7 @@ class _ConteudoSobreMimWidgetState extends State<ConteudoSobreMimWidget> {
                       nomeSvg: "sparkles",
                       altura: Responsive.tablet(context) ? 40 : 80,
                       largura: Responsive.tablet(context) ? 40 : 80,
-                      cor: Color(widget.tema.base200),
+                      cor: Color(widget.tema.secondary),
                     )
                         .animate(
                           onPlay: (controller) => controller.repeat(reverse: true),
@@ -115,7 +115,7 @@ class _ConteudoSobreMimWidgetState extends State<ConteudoSobreMimWidget> {
                       nomeSvg: "sparkles",
                       altura: Responsive.tablet(context) ? 40 : 80,
                       largura: Responsive.tablet(context) ? 40 : 80,
-                      cor: Color(widget.tema.base200),
+                      cor: Color(widget.tema.secondary),
                     )
                         .animate(
                           onPlay: (controller) => controller.repeat(reverse: true),

@@ -1,0 +1,226 @@
+import 'dart:collection';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:portfolio/domain/tema.dart';
+import 'package:portfolio/interface/util/responsive.dart';
+import 'package:portfolio/interface/widgets/svg.widget.dart' show SvgWidget;
+import 'package:portfolio/interface/widgets/texto.widget.dart';
+
+Future<void> notificarCasoErro(
+  Future<void> Function() rotina, [
+  bool lancarErro = true,
+]) async {
+  try {
+    await rotina();
+  } catch (e) {
+    print(e.toString());
+    if (lancarErro) Notificacoes.mostrar(e.toString(), Emoji.ERRO);
+  }
+}
+
+class Notificacoes {
+  static final Queue<Notificacao> _notificacoes = Queue();
+  static Notificacao? notificacaoAtual;
+  static Function() atualizar = () => {};
+
+  static definirAtualizar(Function() atualizarTela) {
+    atualizar = atualizarTela;
+    atualizar();
+  }
+
+  static void mostrar(String mensagem, [Emoji emoji = Emoji.ALERTA]) {
+    if (_mensagemInvalida(mensagem)) return;
+    Notificacao notificacao = Notificacao(emoji, mensagem);
+    _notificacoes.add(notificacao);
+    _processarNotificacoes();
+  }
+
+  static bool _mensagemInvalida(String mensagem) {
+    Set<String> _palavrasChave = {
+      "null",
+      "widget",
+      "exception",
+      "error",
+      "mounted",
+      "operator",
+      "bad",
+    };
+    if (_palavrasChave.any(
+      (palavra) => mensagem.toLowerCase().contains(palavra),
+    )) {
+      print("Mensagem de erro: $mensagem\nStack: ${StackTrace.current}");
+      return true;
+    }
+    return false;
+  }
+
+  static void _processarNotificacoes() {
+    while (_notificacoes.isNotEmpty) {
+      notificacaoAtual = _notificacoes.removeFirst();
+      atualizar();
+      Future.delayed(const Duration(seconds: 5), () {
+        notificacaoAtual = null;
+        atualizar();
+      });
+    }
+  }
+
+  static fechaNotificacao() {
+    notificacaoAtual = null;
+    atualizar();
+    _processarNotificacoes();
+  }
+}
+
+class NotificacaoWidget extends StatefulWidget {
+  final Tema tema;
+  final Widget child;
+
+  const NotificacaoWidget({super.key, required this.tema, required this.child});
+
+  @override
+  State<NotificacaoWidget> createState() => _NotificacaoWidgetState();
+}
+
+class _NotificacaoWidgetState extends State<NotificacaoWidget> {
+  @override
+  initState() {
+    super.initState();
+    Notificacoes.definirAtualizar(() => setState(() {}));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      type: MaterialType.transparency,
+      child: SizedBox(
+        height: Responsive.alturaTela(context),
+        width: Responsive.larguraTela(context),
+        child: Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            widget.child,
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+              top: Notificacoes.notificacaoAtual == null ? -100 : 8,
+              child: Container(
+                height: Responsive.mobile(context) ? 52 : 60,
+                width: Responsive.mobile(context)
+                    ? Responsive.larguraTela(context) -
+                          widget.tema.espacamento * 2
+                    : 400,
+                decoration: BoxDecoration(
+                  color: Color(widget.tema.base200),
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(widget.tema.neutral).withOpacity(0.2),
+                      blurRadius: 5,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child:
+                      Column(
+                            children: [
+                              const Spacer(),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(width: widget.tema.espacamento),
+                                  if (Notificacoes.notificacaoAtual?.emoji !=
+                                      null)
+                                    SvgWidget(
+                                      nomeSvg: '',
+                                      caminhoCompleto: Notificacoes
+                                          .notificacaoAtual
+                                          ?.emoji
+                                          .icone,
+                                      altura: Responsive.mobile(context)
+                                          ? 30
+                                          : 35,
+                                      cor: corNotificacao,
+                                    ),
+                                  SizedBox(width: widget.tema.espacamento),
+                                  Expanded(
+                                    child: TextoWidget(
+                                      cor:  Color(widget.tema.baseContent),
+                                      texto:
+                                          Notificacoes
+                                              .notificacaoAtual
+                                              ?.mensagem ??
+                                          '',
+                                    ),
+                                  ),
+                                  SizedBox(width: widget.tema.espacamento),
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.close,
+                                      color: Color(widget.tema.baseContent),
+                                    ),
+                                    onPressed: () =>
+                                        Notificacoes.fechaNotificacao(),
+                                  ),
+                                  SizedBox(width: widget.tema.espacamento / 2),
+                                ],
+                              ),
+                              const Spacer(),
+                              Container(
+                                height: 3,
+                                width: Responsive.mobile(context)
+                                    ? Responsive.larguraTela(context)
+                                    : 400,
+                                color: corNotificacao,
+                              ),
+                            ],
+                          )
+                          .animate(
+                            target: Notificacoes.notificacaoAtual == null
+                                ? 0
+                                : 1,
+                          )
+                          .fade(
+                            duration: const Duration(milliseconds: 100),
+                            curve: Curves.easeInOut,
+                          ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Color get corNotificacao {
+    return switch (Notificacoes.notificacaoAtual?.emoji) {
+      Emoji.SUCESSO => Color(widget.tema.success),
+      Emoji.ERRO => Color(widget.tema.error),
+      Emoji.ALERTA => Color(widget.tema.warning),
+      _ => Color(widget.tema.base200),
+    };
+  }
+}
+
+class Notificacao {
+  final Emoji emoji;
+  final String mensagem;
+
+  const Notificacao(this.emoji, this.mensagem);
+}
+
+enum Emoji {
+  SUCESSO('Sucesso', 'assets/face-smile.svg'),
+  ERRO('Erro', 'assets/face-frown.svg'),
+  ALERTA('Alerta', 'assets/exclaimation-circle.svg');
+
+  final String descricao;
+  final String icone;
+
+  const Emoji(this.descricao, this.icone);
+}

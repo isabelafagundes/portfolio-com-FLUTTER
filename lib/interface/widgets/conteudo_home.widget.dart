@@ -32,9 +32,9 @@ class _ConteudoHomeWidgetState extends State<ConteudoHomeWidget> {
       decoration: BoxDecoration(
         color: Color(widget.tema.base100),
         image: DecorationImage(
-          image: const AssetImage("assets/background.png"),
+          image: const AssetImage("assets/computer.jpg"),
           fit: Responsive.mobile(context) ? BoxFit.fitHeight : BoxFit.cover,
-          opacity: .09,
+          opacity: .06,
         ),
       ),
       child: ItemAnimadoWidget(

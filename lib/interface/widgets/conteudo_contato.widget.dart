@@ -4,6 +4,7 @@ import 'package:portfolio/interface/util/responsive.dart';
 import 'package:portfolio/interface/widgets/botao_home.widget.dart';
 import 'package:portfolio/interface/widgets/input.widget.dart';
 import 'package:portfolio/interface/widgets/item_animado.widget.dart';
+import 'package:portfolio/interface/widgets/notificacao.widget.dart';
 import 'package:portfolio/interface/widgets/texto.widget.dart';
 import 'package:portfolio/interface/widgets/titulo.widget.dart';
 import 'package:http/http.dart' as http;
@@ -148,7 +149,7 @@ class _ConteudoContatoWidgetState extends State<ConteudoContatoWidget> {
         message.isEmpty ||
         !email.contains('@') ||
         !email.contains('.')) {
-      print('Preencha todos os campos!');
+      Notificacoes.mostrar('Preencha todos os campos!', Emoji.ALERTA);
       return;
     }
 
@@ -159,12 +160,13 @@ class _ConteudoContatoWidgetState extends State<ConteudoContatoWidget> {
     );
 
     if (response.statusCode == 200) {
-      print('E-mail enviado com sucesso!');
+      Notificacoes.mostrar('E-mail enviado com sucesso!', Emoji.SUCESSO);
+
       _nomeController.clear();
       _emailController.clear();
       _mensagemController.clear();
     } else {
-      print('Erro ao enviar e-mail: ${response.body}');
+      Notificacoes.mostrar('Erro ao enviar e-mail: ${response.body}', Emoji.ALERTA);
     }
   }
 }

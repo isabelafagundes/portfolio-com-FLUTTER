@@ -42,13 +42,13 @@ class _BotaoIconeWidgetState extends State<BotaoIconeWidget> {
           child: AnimatedContainer(
             padding: EdgeInsets.all(widget.tema.espacamento * 1.2),
             decoration: BoxDecoration(
-              color: Color(_hover ? widget.tema.base100 : widget.tema.accent),
+              color: Color(_hover ? widget.tema.base100 : widget.tema.primary),
               border: !widget.borda
                   ? null
                   : Border.all(
                       color: !_hover
                           ? Color(widget.tema.neutral).withOpacity(.1)
-                          : Color(widget.tema.accent).withOpacity(.45),
+                          : Color(widget.tema.primary).withOpacity(.45),
                       width: 1,
                     ),
               borderRadius: BorderRadius.circular(50),
